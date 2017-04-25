@@ -223,3 +223,11 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+
+.container-fluid {
+    min-height:560px;
+}
+
+.page-header {
+    margin: 10px 0 10px;
+}
