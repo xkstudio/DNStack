@@ -236,3 +236,8 @@ ul.alert-dropdown {
     padding: 8px 8px;
     color: #9d9d9d;
 }
+
+.tb-center th, .tb-center td {
+    text-align: center;
+    vertical-align: middle;
+}
