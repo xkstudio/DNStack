@@ -8,6 +8,7 @@ import user
 route = [
     (r'/',index.IndexHandler),
     (r'/blank',index.BlankHandler),
+    (r'/sample',index.SampleHandler),
     (r'/user/login',user.LoginHandler),
     (r'/user/register',user.RegisterHandler),
     (r'/page/404.html',page.Page404Handler),
