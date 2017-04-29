@@ -21,12 +21,17 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for row in data %}
                 <tr>
-                    <td><input type="checkbox"></td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
+                    <td id="gid_{{ row.id }}"><input type="checkbox"></td>
+                    <td>{{ row.name }}</td>
+                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-xs btn-primary" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>编辑</button>
+                        <button type="button" class="btn btn-xs btn-danger" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
+                    </td>
                 </tr>
+                {% endfor %}
                 </tbody>
         </table>
     </div>
