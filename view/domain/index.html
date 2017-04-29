@@ -31,7 +31,7 @@
                     <td>{{ group[row.gid] }}</td>
                     <td>{{ handler.format_time(row.create_time) }}</td>
                     <td>{{ row.count }}</td>
-                    <td>{{ row.status }}</td>
+                    <td>{{ status[row.status] }}</td>
                     <td>
                         <button type="button" class="btn btn-xs btn-primary" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>备注</button>
                         <button type="button" class="btn btn-xs btn-warning" data-id="{{ row.id }}"><i class="fa fa-ban fa-fw"></i>停用</button>

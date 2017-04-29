@@ -19,7 +19,8 @@ class IndexHandler(BaseHandler):
         group = {}
         for i in grps:
             group[i.id] = i.name
-        self.render('domain/index.html',data=data,group=group)
+        status = {1:u'<span style="color:green">已启用</span>',2:u'<span style="color:red">暂停解析</span>'}
+        self.render('domain/index.html',data=data,group=group,status=status)
 
 
 class GroupHandler(BaseHandler):
