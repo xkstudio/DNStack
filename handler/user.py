@@ -3,6 +3,7 @@
 # Powered By KK Studio
 
 from BaseHandler import BaseHandler
+from tornado.web import authenticated as Auth
 
 class LoginHandler(BaseHandler):
 
@@ -40,6 +41,7 @@ class LogoutHandler(BaseHandler):
 
 # Profile
 class ProfileHandler(BaseHandler):
+    @Auth
     def get(self):
         self.render('user/profile.html')
 
