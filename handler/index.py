@@ -17,3 +17,9 @@ class BlankHandler(BaseHandler):
     # @Auth
     def get(self):
         self.render('index/blank.html')
+
+
+class SampleHandler(BaseHandler):
+    # @Auth
+    def get(self):
+        self.render('index/sample.html')
