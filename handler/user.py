@@ -35,7 +35,22 @@ class LoginHandler(BaseHandler):
                 'login_location': profile.login_location,
             }
             self.create_session(self, session_data, remember)
-            return self.jsonReturn({'code': 0, 'msg': u'Login Successful'})
+            # 记录登录信息
+            headers = self.request.headers
+            login_ua = headers.get('User-Agent')
+            login_ip = self.request.remote_ip
+            login_data = {
+                "login_count": int(profile.login_count) + 1,
+                "login_time": self.time,
+                "login_ua": login_ua,
+                "login_ip": login_ip
+                # "login_location": login_location
+            }
+            self.db.query(User).filter_by(id=profile.id).update(login_data)
+            self.db.commit()
+            # 跳转登录前的URL
+            next_url = self.get_argument("next", "/")
+            return self.jsonReturn({'code': 0, 'msg': u'Login Successful', 'next':next_url})
         else:
             return self.jsonReturn({'code': -2, 'msg': u'用户名或密码错误'})
 
