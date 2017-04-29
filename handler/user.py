@@ -36,3 +36,9 @@ class LogoutHandler(BaseHandler):
         self.session.remove()
         self.clear_cookie(self.cookie_name)
         self.redirect(self.get_login_url())
+
+
+# Profile
+class ProfileHandler(BaseHandler):
+    def get(self):
+        self.render('user/profile.html')
