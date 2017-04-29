@@ -20,10 +20,10 @@
                 <h3 class="panel-title"><i class="fa fa-info-circle fa-fw"></i> 欢迎</h3>
             </div>
             <div class="panel-body">
-                <p>欢迎您，陆小K！</p>
-                <p>上次登录时间：2017-04-29 15:31:05</p>
-                <p>上次登录地区：广东 深圳 [电信]</p>
-                <p>上次登录IP：192.168.13.19</p>
+                <p>欢迎您，{{ handler.session.get('nickname') }}！</p>
+                <p>上次登录时间：{{ handler.format_time(handler.session.get('login_time')) }}</p>
+                <p>上次登录地区：{{ handler.session.get('login_location') or '' }}</p>
+                <p>上次登录IP：{{ handler.session.get('login_ip') }}</p>
             </div>
         </div>
     </div>
