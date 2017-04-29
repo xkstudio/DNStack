@@ -10,7 +10,7 @@
         <table class="table table-striped table-hover tb-center">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th><input type="checkbox"></th>
                     <th>域名</th>
                     <th>分组</th>
                     <th>创建时间</th>
@@ -22,16 +22,16 @@
                 <tbody>
                 {% for row in data %}
                 <tr>
-                    <td>{{ row.id }}</td>
-                    <td id="domain_{{ row.id }}">{{ row.zone }}</td>
+                    <td><input id="domain_{{ row.id }}" type="checkbox"></td>
+                    <td id="domain_name_{{ row.id }}">{{ row.zone }}</td>
                     <td>{{ row.gid }}</td>
                     <td>{{ row.create_time }}</td>
                     <td>{{ row.count }}</td>
                     <td>{{ row.status }}</td>
                     <td>
-                        <button type="button" class="btn btn-xs btn-warning"><i class="fa fa-ban fa-fw"></i>停用</button>
-                        <button type="button" class="btn btn-xs btn-primary"><i class="fa fa-edit fa-fw"></i>备注</button>
-                        <button type="button" class="btn btn-xs btn-danger"><i class="fa fa-times fa-fw"></i>删除</button>
+                        <button type="button" class="btn btn-xs btn-warning" data-id="{{ row.id }}"><i class="fa fa-ban fa-fw"></i>停用</button>
+                        <button type="button" class="btn btn-xs btn-primary" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>备注</button>
+                        <button type="button" class="btn btn-xs btn-danger" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
                 </tr>
                 {% endfor %}
                 </tbody>
