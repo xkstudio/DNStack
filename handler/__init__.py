@@ -10,7 +10,7 @@ route = [
     (r'/blank',index.BlankHandler),
     (r'/sample',index.SampleHandler),
     (r'/user/login',user.LoginHandler),
-    (r'/user/register',user.RegisterHandler),
+    (r'/user/logout',user.LogoutHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/500.html',page.Page500Handler),
     (r'/page/error.html',page.PageErrorHandler),
