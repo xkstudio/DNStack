@@ -18,11 +18,13 @@ class LoginHandler(BaseHandler):
         username = self.get_argument("username", None)
         password = self.get_argument("password", None)
         remember = self.get_argument("remember", "no")
+        if not username or not password:
+            return self.jsonReturn({'code':-1,'msg':u'参数错误'})
         profile = self.db.query(User).filter(or_(User.username==username,User.email==username),and_(User.status=='1')).first()
         if profile:
             password_hash = self.md5(password+profile.password_key)
             if password_hash != profile.password:
-                return self.jsonReturn({'code':-1,'msg':u'用户名或密码错误'})
+                return self.jsonReturn({'code':-2,'msg':u'用户名或密码错误'})
             session_data = {
                 'uid': profile.id,
                 'username': profile.username,
@@ -35,7 +37,7 @@ class LoginHandler(BaseHandler):
             self.create_session(self, session_data, remember)
             return self.jsonReturn({'code': 0, 'msg': u'Login Successful'})
         else:
-            return self.jsonReturn({'code': -1, 'msg': u'用户名或密码错误'})
+            return self.jsonReturn({'code': -2, 'msg': u'用户名或密码错误'})
 
 
     def create_session(self,data,remember):
