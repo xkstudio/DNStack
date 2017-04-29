@@ -2,37 +2,25 @@
 # -*- coding:utf-8 -*-
 # Powered By KK Studio
 
-import MySQLdb
 import redis as PyRedis
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, scoped_session
 
-
-# Wrapper MySQL
 class DB:
 
-    def __init__(self,host,port,user,passwd,db,charset="utf8"):
-        self._conn = MySQLdb.connect(host=host, port=port, user=user, passwd=passwd, db=db, charset=charset)
-        self._cur = self._conn.cursor(cursorclass=MySQLdb.cursors.DictCursor)
+    def __init__(self,host='localhost',port=3306,db='mysql',user='root',passwd='',charset='utf-8'):
+        db_uri = 'mysql+mysqldb://%s:%s@%s:%s/%s?charset=%s' % (user,passwd,host,port,db,charset)
+        self.session = self.create_session(db_uri,charset)
+
+
+    def create_session(self,db_uri,encoding='utf-8'):
+        engine = create_engine(db_uri, encoding=encoding, echo=False, pool_recycle=60)
+        return scoped_session(sessionmaker(bind=engine, autocommit=False))
+
 
     def close(self):
-        self._cur.close()
-        self._conn.close()
-
-    def select(self,sql):
-        self._cur.execute(sql)
-        return self._cur.fetchall()
-
-    def get(self,sql):
-        self._cur.execute(sql)
-        return self._cur.fetchone()
-
-    def update(self,sql):
-        pass
-
-    def delete(self,sql):
-        pass
-
-    def insert(self,sql):
-        pass
+        if self.session:
+            self.session.remove()
 
 # Wrapper Redis
 class Redis():
