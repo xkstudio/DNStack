@@ -48,6 +48,7 @@ class Groups(Base):
     __tablename__ = 'groups'
 
     id = Column(Integer,primary_key=True,autoincrement=True)
+    name = Column(VARCHAR(128),nullable=False,unique=True)
 
 
 class Record(Base):
