@@ -28,7 +28,6 @@
                         </div>
                     </div>
                     <div style="margin-top:10px" class="form-group">
-                        <!-- Button -->
                         <div class="col-sm-12 controls">
                             <a id="btn-login" href="javascript:void(0);" class="btn btn-success pull-right" title="登录DNStack"><i class="fa fa-sign-in fa-fw"></i> 登 录</a>
                             <a id="btn-fblogin" href="#" class="btn btn-primary hidden">Login with Facebook</a>
@@ -52,8 +51,7 @@
     <div id="signupbox" style="display:none; margin-top:50px" class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title">Sign Up</div>
-                <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="javascript:void(0);" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
+                <div class="panel-title">注册DNStack</div>
             </div>
             <div class="panel-body" >
                 <form id="signupform" class="form-horizontal" role="form">
@@ -62,45 +60,34 @@
                         <span></span>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="col-md-3 control-label">Email</label>
+                        <label for="email" class="col-md-3 control-label">邮箱地址</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="email" placeholder="Email Address">
+                            <input type="text" class="form-control" name="email" placeholder="请输入您的邮箱地址">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="firstname" class="col-md-3 control-label">First Name</label>
+                        <label for="password" class="col-md-3 control-label">密　　码</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="firstname" placeholder="First Name">
+                            <input type="password" class="form-control" name="passwd" placeholder="请输入您的密码">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lastname" class="col-md-3 control-label">Last Name</label>
+                        <label for="password" class="col-md-3 control-label">重复密码</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+                            <input type="password" class="form-control" name="passwd" placeholder="请再次输入您的密码">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="col-md-3 control-label">Password</label>
-                        <div class="col-md-9">
-                            <input type="password" class="form-control" name="passwd" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="icode" class="col-md-3 control-label">Invitation Code</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="icode" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <!-- Button -->
                         <div class="col-md-offset-3 col-md-9">
-                            <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
-                            <span style="margin-left:8px;">or</span>
+                            <button id="btn-signup" type="button" class="btn btn-info pull-right" title="注册一个DNStack帐号"><i class="fa fa-sign-out fa-fw"></i> 注 册</button>
                         </div>
                     </div>
-                    <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
-                        <div class="col-md-offset-3 col-md-9">
-                            <button id="btn-fbsignup" type="button" class="btn btn-primary"><i class="icon-facebook"></i>   Sign Up with Facebook</button>
+                    <div class="form-group">
+                        <div class="col-md-12 control">
+                            <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                <a id="signinlink" href="javascript:void(0);" onclick="$('#signupbox').hide(); $('#loginbox').show()">返回登录</a>
+                                <span class="pull-right">2017 (C) <a href="https://github.com/kkstu" target="_blank">KK Studio</a></span>
+                            </div>
                         </div>
                     </div>
                 </form>
