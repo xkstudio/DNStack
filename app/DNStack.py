@@ -35,7 +35,8 @@ class App(tornado.web.Application):
         #每10秒执行一次
         #tornado.ioloop.PeriodicCallback(self.test, 1 * 10 * 1000).start()
         # Init Database
-        self.db = db.DB(**conf['db'])
+        _db = db.DB(**conf['db'])
+        self.db = _db.session
         #Init Redis
         R = db.Redis(**conf['redis'])
         self.redis = R.Connect()
