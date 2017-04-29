@@ -48,5 +48,6 @@ class ProfileHandler(BaseHandler):
 
 # Password
 class PasswdHandler(BaseHandler):
+    @Auth
     def get(self):
         self.render('user/passwd.html')
