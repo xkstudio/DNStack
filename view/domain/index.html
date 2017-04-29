@@ -23,12 +23,15 @@
                 {% for row in data %}
                 <tr>
                     <td>{{ row.id }}</td>
-                    <td>{{ row.zone }}</td>
+                    <td id="domain_{{ row.id }}">{{ row.zone }}</td>
                     <td>{{ row.gid }}</td>
                     <td>{{ row.create_time }}</td>
                     <td>{{ row.count }}</td>
                     <td>{{ row.status }}</td>
-                    <td>停用 | 备注 | 删除</td>
+                    <td>
+                        <button type="button" class="btn btn-xs btn-warning"><i class="fa fa-ban fa-fw"></i>停用</button>
+                        <button type="button" class="btn btn-xs btn-primary"><i class="fa fa-edit fa-fw"></i>备注</button>
+                        <button type="button" class="btn btn-xs btn-danger"><i class="fa fa-times fa-fw"></i>删除</button>
                 </tr>
                 {% endfor %}
                 </tbody>
