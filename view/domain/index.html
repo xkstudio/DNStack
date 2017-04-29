@@ -20,7 +20,7 @@
                     <th>创建时间</th>
                     <th>记录统计</th>
                     <th>状态</th>
-                    <th>操作</th>
+                    <th>管理</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,6 +33,7 @@
                     <td>{{ row.count }}</td>
                     <td>{{ status[row.status] }}</td>
                     <td>
+                        <a href="/record?did={{ row.id }}" class="btn btn-xs btn-info"><i class="fa fa-th-large fa-fw"></i>解析</a>
                         <button type="button" class="btn btn-xs btn-primary" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>备注</button>
                         {% if row.status == 1 %}
                         <button type="button" class="btn btn-xs btn-warning" data-id="{{ row.id }}"><i class="fa fa-ban fa-fw"></i>停用</button>
