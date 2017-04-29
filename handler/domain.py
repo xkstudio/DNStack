@@ -35,4 +35,4 @@ class RecordHandler(BaseHandler):
         domain = self.get_argument('domain')
         data = self.db.query(Record).filter_by(zone=domain).all()
         status = {1: u'<span style="color:green">已启用</span>', 2: u'<span style="color:red">暂停解析</span>'}
-        self.render('domain/record.html',data=data,status=status)
+        self.render('domain/record.html',data=data,status=status,domain=domain)
