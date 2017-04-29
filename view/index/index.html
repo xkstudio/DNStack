@@ -27,30 +27,16 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-4">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-info-circle fa-fw"></i> 系统状态</h3>
             </div>
             <div class="panel-body">
-                <pre>
-version: BIND 9.11.0-P5
-boot time: Sat, 29 Apr 2017 07:34:03 GMT
-last configured: Sat, 29 Apr 2017 07:34:03 GMT
-configuration file: /usr/local/bind/etc/named.conf
-CPUs found: 2
-worker threads: 2
-UDP listeners per interface: 1
-number of zones: 101 (98 automatic)
-debug level: 0
-xfers running: 0
-xfers deferred: 0
-soa queries in progress: 0
-query logging is ON
-recursive clients: 0/900/1000
-tcp clients: 0/150
-server is up and running
-                </pre>
+                <p>系统版本：<span>{{ handler.app_version }}</span></p>
+                <p>Bind版本：<span></span></p>
+                <p>运行时长：<span></span></p>
+                <p>运行状态：<span></span></p>
             </div>
         </div>
     </div>
