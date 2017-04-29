@@ -13,23 +13,23 @@
                 <form id="loginform" class="form-horizontal" role="form">
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="login-username" type="text" class="form-control" name="username" placeholder="用户名或邮箱地址">
+                        <input id="username" type="text" class="form-control" placeholder="用户名或邮箱地址" data-next="/">
                     </div>
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input id="login-password" type="password" class="form-control" name="password" placeholder="密 码">
+                        <input id="password" type="password" class="form-control" placeholder="密 码">
                     </div>
                     <div class="input-group" style="display:block;">
                         <div class="checkbox">
                             <label>
-                                <input id="login-remember" type="checkbox" name="remember" value="1"> 记住我
+                                <input id="remember" type="checkbox" value="1"> 记住我
                             </label>
                             <a href="javascript:void(0);" class="pull-right">忘记密码</a>
                         </div>
                     </div>
                     <div style="margin-top:10px" class="form-group">
                         <div class="col-sm-12 controls">
-                            <a id="btn-login" href="javascript:void(0);" class="btn btn-success pull-right" title="登录DNStack"><i class="fa fa-sign-in fa-fw"></i> 登 录</a>
+                            <a id="login-btn" href="javascript:void(0);" class="btn btn-success pull-right" title="登录DNStack"><i class="fa fa-sign-in fa-fw"></i> 登 录</a>
                             <a id="btn-fblogin" href="#" class="btn btn-primary hidden">Login with Facebook</a>
                         </div>
                     </div>
@@ -96,5 +96,57 @@
     </div>
 </div>
 {% include "layout/footer.html" %}
+<script>
+$(function(){
+    var _login = function(){
+        var username = $('#username').val().trim();
+        var password = $('#password').val().trim();
+        if (username==""){
+            $.xk.toast('用户名不能为空！');
+            $('#username').focus();
+            return false;
+        }
+        if (password==""){
+            $.xk.toast('密码不能为空！');
+            $('#password').focus();
+            return false;
+        }
+        var remember = "no";
+        if ($("#remember").is(':checked')){
+            remember = "yes";
+        }
+        $.xk.http({
+            type: 'POST',
+            url: '/user/login?_k=' + $.random(),
+            data: {'username':username,'password':$.xk.md5(password),'remember':remember},
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    var next = $('#username').data('next');
+                    location.href = next;
+                } else {
+                    $.xk.alert('服务器错误');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试。');
+            }
+        });
+    };
+    $("#login-btn").click(_login);
+    //监听回车事件
+    $("html").keydown(function(e){
+        var key = e.which;
+        if(key == 13){
+            _login();
+            return false;
+        }
+    });
+});
+</script>
 </body>
 </html>
