@@ -20,15 +20,17 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for row in data %}
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.zone }}</td>
+                    <td>{{ row.gid }}</td>
+                    <td>{{ row.create_time }}</td>
+                    <td>{{ row.count }}</td>
+                    <td>{{ row.status }}</td>
+                    <td>停用 | 备注 | 删除</td>
                 </tr>
+                {% endfor %}
                 </tbody>
         </table>
     </div>
