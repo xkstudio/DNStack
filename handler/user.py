@@ -42,3 +42,9 @@ class LogoutHandler(BaseHandler):
 class ProfileHandler(BaseHandler):
     def get(self):
         self.render('user/profile.html')
+
+
+# Password
+class PasswdHandler(BaseHandler):
+    def get(self):
+        self.render('user/passwd.html')
