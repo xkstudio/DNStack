@@ -15,7 +15,7 @@
         <span class="page-title">解析管理</span>
         <span style="font-size:16px;margin-left:3px;">【<a href="javascript:void(0);">{{ zone }}</a>】</span>
         <span class="pull-right">
-            <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-plus fa-fw"></i>添加解析</button>
+            <button type="button" class="btn btn-sm btn-primary" onclick="$('#add_record_line').toggle();"><i class="fa fa-plus fa-fw"></i>添加解析</button>
         </span>
         <hr>
     </div>
@@ -55,7 +55,7 @@
                     <td></td>
                     <td>
                         <button type="button" class="btn btn-xs btn-primary"><i class="fa fa-check fa-fw"></i>保存</button>
-                        <button type="button" class="btn btn-xs btn-danger"><i class="fa fa-times fa-fw"></i>取消</button>
+                        <button type="button" class="btn btn-xs btn-danger" onclick="$('#add_record_line').toggle();"><i class="fa fa-times fa-fw"></i>取消</button>
                     </td>
                 </tr>
                 {% for row in data %}
@@ -83,4 +83,11 @@
         </table>
     </div>
 </div>
+{% endblock %}
+{% block footer %}
+<script>
+$(function(){
+//
+});
+</script>
 {% endblock %}
