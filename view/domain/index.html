@@ -25,7 +25,7 @@
                     <td><input id="domain_{{ row.id }}" type="checkbox"></td>
                     <td id="domain_name_{{ row.id }}">{{ row.zone }}</td>
                     <td>{{ row.gid }}</td>
-                    <td>{{ row.create_time }}</td>
+                    <td>{{ handler.format_time(row.create_time) }}</td>
                     <td>{{ row.count }}</td>
                     <td>{{ row.status }}</td>
                     <td>
