@@ -14,7 +14,7 @@ class IndexHandler(BaseHandler):
         page = int(self.get_argument('page', 1))
         line = int(self.get_argument('line', 20))
         offset = (page - 1) * line
-        data = self.db.query(Domain).offset(offset).limit(line).all()
+        data = self.db.query(Domain).order_by('id desc').offset(offset).limit(line).all()
         grps = self.db.query(Groups).all()
         group = {}
         for i in grps:
