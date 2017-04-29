@@ -5,12 +5,17 @@
 
 from BaseHandler import BaseHandler
 from tornado.web import authenticated as Auth
+from model.models import Domain, Groups, Record
 
 
 class IndexHandler(BaseHandler):
     @Auth
     def get(self):
-        self.render('domain/index.html')
+        page = int(self.get_argument('page', 1))
+        line = int(self.get_argument('line', 20))
+        offset = (page - 1) * line
+        data = self.db.query(Domain).offset(offset).limit(line).all()
+        self.render('domain/index.html',data=data)
 
 
 class GroupHandler(BaseHandler):
