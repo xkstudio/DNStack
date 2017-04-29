@@ -34,7 +34,11 @@
                     <td>{{ status[row.status] }}</td>
                     <td>
                         <button type="button" class="btn btn-xs btn-primary" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>备注</button>
+                        {% if row.status == 1 %}
                         <button type="button" class="btn btn-xs btn-warning" data-id="{{ row.id }}"><i class="fa fa-ban fa-fw"></i>停用</button>
+                        {% else %}
+                        <button type="button" class="btn btn-xs btn-success" data-id="{{ row.id }}"><i class="fa fa-check fa-fw"></i>启用</button>
+                        {% endif %}
                         <button type="button" class="btn btn-xs btn-danger" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
                     </td>
                 </tr>
