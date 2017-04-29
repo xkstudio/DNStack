@@ -35,6 +35,13 @@ class Domain(Base):
     __tablename__ = 'domain'
 
     id = Column(Integer,primary_key=True,autoincrement=True)
+    zone = Column(VARCHAR(128),nullable=False,unique=True)
+    gid = Column(Integer,nullable=True)
+    comment = Column(VARCHAR(256), nullable=True)
+    count = Column(Integer,nullable=False,default=0)
+    create_time = Column(Integer,nullable=True)
+    update_time = Column(Integer,nullable=True)
+    status = Column(SmallInteger, nullable=False, default=1)
 
 
 class Groups(Base):
