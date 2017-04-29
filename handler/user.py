@@ -34,7 +34,7 @@ class LoginHandler(BaseHandler):
                 'login_ip': profile.login_ip,
                 'login_location': profile.login_location,
             }
-            self.create_session(self, session_data, remember)
+            self.create_session(session_data, remember)
             # 记录登录信息
             headers = self.request.headers
             login_ua = headers.get('User-Agent')
