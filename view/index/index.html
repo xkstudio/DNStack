@@ -1,4 +1,16 @@
 {% extends "layout/main.html" %}
+{% block head %}
+<style>
+.title-box-1 {
+    display: inline-block;
+    width: 90px;
+}
+.title-box-2 {
+    display: inline-block;
+    width: 120px;
+}
+</style>
+{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-lg-12">
@@ -21,9 +33,9 @@
             </div>
             <div class="panel-body">
                 <p>欢迎您，{{ handler.session.get('nickname') }}！</p>
-                <p>上次登录时间：{{ handler.format_time(handler.session.get('login_time')) }}</p>
-                <p>上次登录地区：{{ handler.session.get('login_location') or '' }}</p>
-                <p>上次登录IP：{{ handler.session.get('login_ip') }}</p>
+                <p><span class="title-box-2">上次登录时间：</span>{{ handler.format_time(handler.session.get('login_time')) }}</p>
+                <p><span class="title-box-2">上次登录地区：</span>{{ handler.session.get('login_location') or '未知' }}</p>
+                <p><span class="title-box-2">上次登录IP：</span>{{ handler.session.get('login_ip') }}</p>
             </div>
         </div>
     </div>
