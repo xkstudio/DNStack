@@ -222,3 +222,19 @@ class StatusRecordHandler(BaseHandler):
         self.db.commit()
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
+
+# 删除解析
+class DeleteRecordHandler(BaseHandler):
+    @Auth
+    def post(self):
+        id = self.get_argument('id',None)
+        if not id:
+            return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
+        data = self.db.query(Record).filter_by(id=id).first()
+        if not data:
+            return self.jsonReturn({'code': -2, 'msg': u'解析不存在'})
+        self.db.query(Record).filter_by(id=id).delete() # 删除解析记录
+        self.db.query(Domain).filter_by(zone=data.zone).update({'record_count': Domain.record_count - 1}) # 更新解析统计
+        self.db.commit()
+        return self.jsonReturn({'code': 0, 'msg': 'Success'})
+
