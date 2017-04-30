@@ -36,6 +36,10 @@ class CreateDomainHandler(BaseHandler):
         chk = self.db.query(Domain).filter_by(zone=domain).first()
         if chk:
             return self.jsonReturn({'code': -2, 'msg': u'域名重复'})
+        # Check Group ID
+        grp = self.db.query(Groups).filter_by(id=gid).first()
+        if not grp:
+            return self.jsonReturn({'code': -3, 'msg': u'分组不存在'})
         d = Domain(zone=domain,gid=gid,comment=comment,create_time=self.time,update_time=self.time)
         self.db.add(d)
         self.db.commit()
@@ -45,7 +49,7 @@ class CreateDomainHandler(BaseHandler):
         else:
             self.db.rollback()
             gid = 0
-            code = -3
+            code = -4
             msg = u'保存域名失败'
         return self.jsonReturn({'code': code, 'msg': msg, 'gid': gid})
 
