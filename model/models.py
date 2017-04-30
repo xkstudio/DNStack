@@ -38,7 +38,7 @@ class Domain(Base):
     zone = Column(VARCHAR(128),nullable=False,unique=True)
     gid = Column(Integer,nullable=True)
     comment = Column(VARCHAR(256), nullable=True)
-    count = Column(Integer,nullable=False,default=0)
+    record_count = Column(Integer,nullable=False,default=0)
     create_time = Column(Integer,nullable=True)
     update_time = Column(Integer,nullable=True)
     status = Column(SmallInteger, nullable=False, default=1)

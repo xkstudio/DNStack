@@ -30,7 +30,7 @@
                     <td><a href="/domain/record?zone={{ row.zone }}" id="domain_name_{{ row.id }}" data-gid="{{ row.gid }}" title="{{ row.comment or '' }}">{{ row.zone }}</a></td>
                     <td>{{ group[row.gid] }}</td>
                     <td>{{ handler.format_time(row.create_time) }}</td>
-                    <td>{{ row.count }}</td>
+                    <td>{{ row.record_count }}</td>
                     <td>{{ status[row.status] }}</td>
                     <td>
                         <a href="/domain/record?zone={{ row.zone }}" class="btn btn-xs btn-info"><i class="fa fa-th-large fa-fw"></i>解析</a>
