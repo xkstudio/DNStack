@@ -70,6 +70,9 @@
                     <td>{{ handler.format_time(row.update_time) }}</td>
                     <td>{{ status[row.status] }}</td>
                     <td>
+                        {% if row.host == '@' and row.type in ['NS','SOA'] %}
+                        --
+                        {% else %}
                         <button type="button" class="btn btn-xs btn-primary edit-record" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>编辑</button>
                         {% if row.status == 1 %}
                         <button type="button" class="btn btn-xs btn-warning record-status" data-id="{{ row.id }}" data-status="2"><i class="fa fa-ban fa-fw"></i>停用</button>
@@ -77,6 +80,7 @@
                         <button type="button" class="btn btn-xs btn-success record-status" data-id="{{ row.id }}" data-status="1"><i class="fa fa-check fa-fw"></i>启用</button>
                         {% endif %}
                         <button type="button" class="btn btn-xs btn-danger record-delete" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}
