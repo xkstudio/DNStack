@@ -24,6 +24,7 @@ route = [
     (r'/domain/record/create',domain.CreateRecordHandler),
     (r'/domain/record/update',domain.UpdateRecordHandler),
     (r'/domain/record/status',domain.StatusRecordHandler),
+    (r'/domain/record/delete',domain.DeleteRecordHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/500.html',page.Page500Handler),
     (r'/page/error.html',page.PageErrorHandler),
