@@ -167,3 +167,29 @@ class CreateRecordHandler(BaseHandler):
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
 
+# 更新解析记录
+class UpdateRecordHandler(BaseHandler):
+    @Auth
+    def post(self):
+        id = self.get_argument('id', None)
+        host = self.get_argument('host', None)
+        zone = self.get_argument('zone', None)
+        type = self.get_argument('type', None)
+        data = self.get_argument('data', None)
+        ttl = self.get_argument('ttl', 600)
+        mx_priority = self.get_argument('mx_priority', None)
+        comment = self.get_argument('comment', None)
+        if not id or not host or not zone or not type or not data:
+            return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
+        type = type.upper()
+        if type not in ['A','AAAA','MX','NS','CNAME','TXT','PTR']:
+            return self.jsonReturn({'code': -2, 'msg': u'解析类型错误'})
+        if host == '@' and type in ['NS','SOA']:
+            return self.jsonReturn({'code': -3, 'msg': u'禁止添加该类型的解析'})
+        domain = self.db.query(Domain).filter_by(zone=zone).first()
+        if not domain:
+            return self.jsonReturn({'code': -4, 'msg': u'域名不存在'})
+        record = self.db.query(Record).filter_by(id=id).first()
+        if not record:
+            return self.jsonReturn({'code': -5, 'msg': u'无效解析'})
+
