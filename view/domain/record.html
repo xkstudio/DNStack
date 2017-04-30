@@ -15,7 +15,7 @@
         <span class="page-title">解析管理</span>
         <span style="font-size:16px;margin-left:3px;">【<a href="javascript:void(0);">{{ zone }}</a>】</span>
         <span class="pull-right">
-            <button type="button" class="btn btn-sm btn-primary" onclick="$('#add_record_line').toggle();"><i class="fa fa-plus fa-fw"></i>添加解析</button>
+            <button type="button" class="btn btn-sm btn-primary" id="new_record_btn"><i class="fa fa-plus fa-fw"></i>添加解析</button>
         </span>
         <hr>
     </div>
@@ -83,11 +83,69 @@
         </table>
     </div>
 </div>
+<!-- 弹窗 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="dialog_title">添加记录</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="host" class="col-sm-2 control-label">主机记录</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <!--<div class="input-group-addon">前缀</div>-->
+                                <input id="host" class="form-control" type="text" placeholder="主机记录">
+                                <div class="input-group-addon">.{{ zone }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="data" class="col-sm-2 control-label">记录值</label>
+                        <div class="col-sm-5">
+                            <input id="data" class="form-control" type="text">
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control" id="type">
+                                <option value="0">解析类型</option>
+                                <option value="A">A</option>
+                                <option value="CNAME">CNAME</option>
+                                <option value="MX">MX</option>
+                                <option value="TXT">TXT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ttl" class="col-sm-2 control-label">TTL</label>
+                        <div class="col-sm-8">
+                            <input id="ttl" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mx_pro" class="col-sm-2 control-label">MX优先级</label>
+                        <div class="col-sm-8">
+                            <input id="mx_pro" class="form-control" type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="save_btn">保 存</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关 闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 {% endblock %}
 {% block footer %}
 <script>
 $(function(){
-//
+$('#new_record_btn').click(function(){
+    $('#dialog').modal({keyboard:false,backdrop:"static"});
+});
 });
 </script>
 {% endblock %}
