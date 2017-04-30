@@ -91,6 +91,7 @@ class StatusDomainHandler(BaseHandler):
         if not data:
             return self.jsonReturn({'code': -2, 'msg': u'域名不存在'})
         self.db.query(Domain).filter_by(id=id).update({'status': status, 'update_time': self.time})
+        self.db.commit()
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
 
