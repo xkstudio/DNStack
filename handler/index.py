@@ -5,13 +5,18 @@
 
 from BaseHandler import BaseHandler
 from tornado.web import authenticated as Auth
+from model.models import Domain, Groups, Record, User
 
 class IndexHandler(BaseHandler):
 
     @Auth
     def get(self):
-        #self.log.info('Hell,Index page!') # Log Test
-        self.render('index/index.html')
+        data = {}
+        data['domain'] = self.db.query(Domain).count()
+        data['group'] = self.db.query(Groups).count()
+        data['record'] = self.db.query(Record).count()
+        data['user'] = self.db.query(User).count()
+        self.render('index/index.html',data=data)
 
 class BlankHandler(BaseHandler):
     # @Auth
