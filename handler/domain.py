@@ -44,6 +44,8 @@ class CreateDomainHandler(BaseHandler):
         self.db.add(d)
         self.db.commit()
         if d.id:
+            self.db.query(Groups).filter_by(id=gid).update({'domain_count': Groups.domain_count+1})
+            self.db.commit()
             code = 0
             msg = u'成功添加域名'
         else:
