@@ -16,6 +16,7 @@ route = [
     (r'/user/passwd',user.PasswdHandler),
     (r'/domain',domain.IndexHandler),
     (r'/domain/create',domain.CreateDomainHandler),
+    (r'/domain/update',domain.UpdateDomainHandler),
     (r'/domain/group',domain.GroupHandler),
     (r'/domain/record',domain.RecordHandler),
     (r'/page/404.html',page.Page404Handler),
