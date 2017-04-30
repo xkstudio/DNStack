@@ -49,6 +49,7 @@ class Groups(Base):
 
     id = Column(Integer,primary_key=True,autoincrement=True)
     name = Column(VARCHAR(128),nullable=False,unique=True)
+    domain_count = Column(Integer, nullable=False, default=0)
 
 
 class Record(Base):
