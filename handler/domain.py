@@ -26,7 +26,7 @@ class IndexHandler(BaseHandler):
 class GroupHandler(BaseHandler):
     @Auth
     def get(self):
-        data = self.db.query(Groups).order_by('id desc').all()
+        data = self.db.query(Groups).order_by(Groups.id.desc()).all()
         self.render('domain/group.html',data=data)
 
 
