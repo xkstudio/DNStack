@@ -27,7 +27,7 @@
                 {% for row in data %}
                 <tr>
                     <td><input id="domain_{{ row.id }}" type="checkbox"></td>
-                    <td id="domain_name_{{ row.id }}">{{ row.zone }}</td>
+                    <td><a href="/domain/record?zone={{ row.zone }}" id="domain_name_{{ row.id }}">{{ row.zone }}</a></td>
                     <td>{{ group[row.gid] }}</td>
                     <td>{{ handler.format_time(row.create_time) }}</td>
                     <td>{{ row.count }}</td>
