@@ -27,7 +27,7 @@
                 {% for row in data %}
                 <tr>
                     <td><input id="domain_{{ row.id }}" type="checkbox"></td>
-                    <td><a href="/domain/record?zone={{ row.zone }}" id="domain_name_{{ row.id }}" data-gid="{{ row.gid }}">{{ row.zone }}</a></td>
+                    <td><a href="/domain/record?zone={{ row.zone }}" id="domain_name_{{ row.id }}" data-gid="{{ row.gid }}" title="{{ row.comment or '' }}">{{ row.zone }}</a></td>
                     <td>{{ group[row.gid] }}</td>
                     <td>{{ handler.format_time(row.create_time) }}</td>
                     <td>{{ row.count }}</td>
@@ -78,7 +78,7 @@
                     <div class="form-group">
                         <label for="comment" class="col-sm-2 control-label">备注</label>
                         <div class="col-sm-8">
-                            <input id="comment" class="form-control" type="text">
+                            <input id="comment" class="form-control" type="text" placeholder="域名备注信息">
                         </div>
                     </div>
                 </form>
@@ -109,10 +109,11 @@ $('.domain-comment').click(function(){
     var id = $(this).data('id');
     var domain = $('#domain_name_'+id).html().trim();
     var gid = $('#domain_name_'+id).data('gid');
+    var comment = $('#domain_name_'+id).attr('title').trim();
     $('#domain').val(domain);
     $('#domain').attr('disabled',true);
     $('#group').val(gid);
-    $('#comment').val('');
+    $('#comment').val(comment);
     $('#save_btn').data('id',id);
     $('#save_btn').data('f','update');
     $('#dialog').modal({keyboard:false,backdrop:"static"});
