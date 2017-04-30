@@ -20,12 +20,14 @@ class IndexHandler(BaseHandler):
         for i in grps:
             group[i.id] = i.name
         status = {1:u'<span style="color:green">已启用</span>',2:u'<span style="color:red">暂停解析</span>'}
+        self.nav_active['/domain'] = 'active'
         self.render('domain/index.html',data=data,group=group,status=status)
 
 
 class GroupHandler(BaseHandler):
     @Auth
     def get(self):
+        self.nav_active['/domain/group'] = 'active'
         data = self.db.query(Groups).order_by(Groups.id.desc()).all()
         self.render('domain/group.html',data=data)
 
@@ -40,5 +42,6 @@ class RecordHandler(BaseHandler):
             zone = u'请选择域名'
             data = []
         status = {1: u'<span style="color:green">已启用</span>', 2: u'<span style="color:red">暂停解析</span>'}
+        self.nav_active['/domain/record'] = 'active'
         self.render('domain/record.html',data=data,status=status,zone=zone)
 
