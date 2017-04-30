@@ -94,7 +94,7 @@ class ProfileHandler(BaseHandler):
             return self.jsonReturn({'code': -1, 'msg': u'Email不能为空'})
         if not nickname:
             return self.jsonReturn({'code': -1, 'msg': u'姓名不能为空'})
-        chk = self.db.query(User).filter(User.email!=email).first()
+        chk = self.db.query(User).filter(User.email==email,User.id!=uid).first()
         if chk:
             return self.jsonReturn({'code': -2, 'msg': u'Email重复'})
         self.db.query(User).filter_by(id=uid).update({'email':email, 'phone':phone, 'nickname':nickname, 'dept':dept, 'update_time': self.time})
