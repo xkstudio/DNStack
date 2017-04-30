@@ -75,7 +75,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="comment" class="col-sm-2 control-label">备注</label>
                         <div class="col-sm-8">
@@ -116,6 +115,45 @@ $('.domain-comment').click(function(){
     $('#save_btn').data('id',id);
     $('#dialog').modal({keyboard:false,backdrop:"static"});
 });
+var _create_domain = function(){
+        var data = {
+            'domain': $('#domain').val().trim(),
+            'gid': $('#group').val(),
+            'comment': $('#comment').val().trim()
+        };
+        if (data['domain']==""){
+            $.xk.toast('域名不能为空！');
+            $('#domain').focus();
+            return false;
+        }
+        if (data['gid']=="0"){
+            $.xk.toast('请选择域名分组！');
+            $('#group').focus();
+            return false;
+        }
+        $.xk.http({
+            type: 'POST',
+            url: '/domain/create',
+            data: data,
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('添加成功！');
+                    location.reload();
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    };
+$("#save_btn").click(_create_domain);
 });
 </script>
 {% endblock %}
