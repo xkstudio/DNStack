@@ -4,7 +4,7 @@ DNStack
 DNS Web Admin Based on Bind
 
 
-### Screenshot
+## Preview
 
 #### Dashboard
 
