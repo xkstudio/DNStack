@@ -89,6 +89,14 @@ ln -s /usr/local/bind/sbin/rndc /usr/sbin
 
 #### Configure Named
 
+Generate rndc.conf
+
+```shell
+cd /usr/local/bind/etc
+../sbin/rndc-confgen > rndc.conf
+```
+
+
 named.conf
 
 ```
