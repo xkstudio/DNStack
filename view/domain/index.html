@@ -39,7 +39,7 @@
                         {% else %}
                         <button type="button" class="btn btn-xs btn-success domain-status" data-id="{{ row.id }}" data-status="1"><i class="fa fa-check fa-fw"></i>启用</button>
                         {% endif %}
-                        <button type="button" class="btn btn-xs btn-danger" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
+                        <button type="button" class="btn btn-xs btn-danger domain-delete" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
                         <button type="button" class="btn btn-xs btn-primary domain-edit" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>编辑</button>
                     </td>
                 </tr>
@@ -163,7 +163,7 @@ $('.domain-status').click(function(){
     var id = $(this).data('id');
     var status = $(this).data('status');
     var domain = $('#domain_name_'+id).html().trim();
-    var msg = {'1':'您确认要启用域名 '+domain+' 吗？','2': '您确认要停用域名 '+domain+' 吗？'}
+    var msg = {'1':'您确认要启用域名 '+domain+' 吗？','2': '您确认要停用域名 '+domain+' 吗？'};
     $.xk.confirm(msg[status],{'title':'操作提示'},function(){
         $.xk.http({
             type: 'POST',
@@ -177,6 +177,34 @@ $('.domain-status').click(function(){
                     $.xk.toast(msg);
                 } else if (code==0){
                     $.xk.toast('操作成功！');
+                    location.reload();
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    });
+});
+$('.domain-delete').click(function(){
+    var id = $(this).data('id');
+    var domain = $('#domain_name_'+id).html().trim();
+    var msg = '您确认要删除域名 ' + domain + ' 吗？';
+    $.xk.confirm(msg,{'title':'删除提示'},function(){
+        $.xk.http({
+            type: 'POST',
+            url: '/domain/delete',
+            data: {'id':id},
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('删除成功！');
                     location.reload();
                 } else {
                     $.xk.alert('服务器错误！');
