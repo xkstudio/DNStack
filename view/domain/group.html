@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <span class="page-title">分组管理</span>
         <span class="pull-right">
-            <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-plus fa-fw"></i>添加分组</button>
+            <button type="button" class="btn btn-sm btn-primary" id="new_group_btn"><i class="fa fa-plus fa-fw"></i>添加分组</button>
         </span>
         <hr>
     </div>
@@ -27,7 +27,7 @@
                     <td id="name_{{ row.id }}">{{ row.name }}</td>
                     <td>--</td>
                     <td>
-                        <button type="button" class="btn btn-xs btn-primary" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>编辑</button>
+                        <button type="button" class="btn btn-xs btn-primary edit-group" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>编辑</button>
                         <button type="button" class="btn btn-xs btn-danger" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
                     </td>
                 </tr>
@@ -36,4 +36,49 @@
         </table>
     </div>
 </div>
+<!-- 弹窗 -->
+<div class="modal fade" tabindex="-1" role="dialog" id="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="dialog_title">添加分组</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">分组名称</label>
+                        <div class="col-sm-8">
+                            <input id="name" class="form-control" type="text" placeholder="请输入分组名称">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="save_btn">保 存</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关 闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endblock %}
+{% block footer %}
+<script>
+$(function(){
+$('#new_group_btn').click(function(){
+    $('#dialog_title').html('新增分组');
+    $('#name').val('');
+    $('#save_btn').data('gid',0);
+    $('#dialog').modal({keyboard:false,backdrop:"static"});
+});
+$('.edit-group').click(function(){
+    $('#dialog_title').html('编辑分组');
+    var gid = $(this).data('id');
+    var name = $('#name_'+gid).html().trim();
+    $('#name').val(name);
+    $('#save_btn').data('gid',gid);
+    $('#dialog').modal({keyboard:false,backdrop:"static"});
+});
+});
+</script>
 {% endblock %}
