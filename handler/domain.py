@@ -69,12 +69,11 @@ class UpdateDomainHandler(BaseHandler):
         if not data:
             return self.jsonReturn({'code': -2, 'msg': u'域名不存在'})
         # Check Group ID
-        group1 = self.db.query(Groups).filter_by(id=gid).first()
-        if not group1:
+        group = self.db.query(Groups).filter_by(id=gid).first()
+        if not group:
             return self.jsonReturn({'code': -3, 'msg': u'分组不存在'})
-        old_gid = group1.id
         self.db.query(Domain).filter_by(id=domain_id).update({'gid': gid, 'comment': comment, 'update_time': self.time})
-        self.db.query(Groups).filter_by(id=old_gid).update({'domain_count': Groups.domain_count-1})
+        self.db.query(Groups).filter_by(id=data.gid).update({'domain_count': Groups.domain_count-1})
         self.db.query(Groups).filter_by(id=gid).update({'domain_count': Groups.domain_count+1})
         self.db.commit()
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
