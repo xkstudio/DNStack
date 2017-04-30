@@ -61,9 +61,9 @@
                 {% for row in data %}
                 <tr>
                     <td><input id="record_{{ row.id }}" type="checkbox"></td>
-                    <td>{{ row.host }}</td>
-                    <td>{{ row.type }}</td>
-                    <td>{{ row.data }}</td>
+                    <td id="host_{{ row.id }}">{{ row.host }}</td>
+                    <td id="type_{{ row.id }}">{{ row.type }}</td>
+                    <td id="data_{{ row.id }}">{{ row.data }}</td>
                     <td>{{ row.mx_priority or '' }}</td>
                     <td>{{ row.ttl }}</td>
                     <td>{{ handler.format_time(row.update_time) }}</td>
