@@ -18,6 +18,7 @@ route = [
     (r'/domain/create',domain.CreateDomainHandler),
     (r'/domain/update',domain.UpdateDomainHandler),
     (r'/domain/status',domain.StatusDomainHandler),
+    (r'/domain/delete',domain.DeleteDomainHandler),
     (r'/domain/group',domain.GroupHandler),
     (r'/domain/record',domain.RecordHandler),
     (r'/page/404.html',page.Page404Handler),
