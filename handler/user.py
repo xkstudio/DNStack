@@ -99,6 +99,8 @@ class ProfileHandler(BaseHandler):
             return self.jsonReturn({'code': -2, 'msg': u'Email重复'})
         self.db.query(User).filter_by(id=uid).update({'email':email, 'phone':phone, 'nickname':nickname, 'dept':dept, 'update_time': self.time})
         self.db.commit()
+        self.session.set('email',email)
+        self.session.set('nickname',nickname)
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
 
