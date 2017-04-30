@@ -24,6 +24,33 @@ class IndexHandler(BaseHandler):
         self.render('domain/index.html',data=data,group=group,status=status)
 
 
+# 新增域名
+class CreateDomainHandler(BaseHandler):
+    @Auth
+    def post(self):
+        domain = self.get_argument('domain',None)
+        gid = self.get_argument('gid',None)
+        comment = self.get_argument('comment',None)
+        if not domain and not gid:
+            return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
+        chk = self.db.query(Domain).filter_by(zone=domain).first()
+        if chk:
+            return self.jsonReturn({'code': -2, 'msg': u'域名重复'})
+        d = Domain(zone=domain,gid=gid,comment=comment,create_time=self.time,update_time=self.time)
+        self.db.add(d)
+        self.db.commit()
+        if d.id:
+            code = 0
+            msg = u'成功添加域名'
+        else:
+            self.db.rollback()
+            gid = 0
+            code = -3
+            msg = u'保存域名失败'
+        return self.jsonReturn({'code': code, 'msg': msg, 'gid': gid})
+
+
+
 class GroupHandler(BaseHandler):
     @Auth
     def get(self):
