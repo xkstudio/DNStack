@@ -23,6 +23,8 @@ class BaseHandler(tornado.web.RequestHandler):
         self.url = self.get_current_route()
         # Nav Style Class
         self.nav_active = {'/':'','/domain':'','/domain/group':'','/domain/record':'','/domain/state':'','/user':''}
+        # Copyright Year
+        self.copyright_year = self.format_time(self.time,'%Y')
 
     # 后面的方法如果重写on_finish方法，需要调用_on_finish
     def _on_finish(self):
