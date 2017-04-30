@@ -51,6 +51,42 @@ Version: **0.0.1-Alpha**
 ![Group](static/img/screenshot/group.jpg)
 
 
+## Deployment
+
+#### Install Bind
+
+```shell
+# Remove Bind (System)
+yum remove bind*
+
+# Downlaod Bind
+wget https://ftp.isc.org/isc/bind9/9.11.0-P5/bind-9.11.0-P5.tar.gz
+
+# Decompress
+tar zxf bind-9.11.0-P5.tar.gz
+
+# Configure
+cd bind-9.11.0-P5
+./configure --prefix=/usr/local/bind \
+--enable-epoll \
+--enable-threads=no \
+--enable-largefile \
+--enable-ipv6 \
+--with-openssl=no \
+--with-readline \
+--with-dlz-mysql=/usr/local/mysql \
+--with-python=/usr/local/python2.7/bin/python2.7
+
+# Install
+make -j 2
+make install
+
+ln -s /usr/local/bind/bin/dig /usr/bin
+ln -s /usr/local/bind/bin/nslookup /usr/bin
+ln -s /usr/local/bind/sbin/named /usr/sbin
+ln -s /usr/local/bind/sbin/rndc /usr/sbin
+```
+
 ## Startup
 
 > python run.py
