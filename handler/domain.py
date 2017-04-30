@@ -142,7 +142,7 @@ class CreateRecordHandler(BaseHandler):
         zone = self.get_argument('zone', None)
         type = self.get_argument('type', None)
         data = self.get_argument('data', None)
-        ttl = self.get_argument('ttl', 600)
+        ttl = self.get_argument('ttl')
         mx_priority = self.get_argument('mx_priority', None)
         comment = self.get_argument('comment', None)
         if not host or not zone or not type or not data:
@@ -155,6 +155,7 @@ class CreateRecordHandler(BaseHandler):
         domain = self.db.query(Domain).filter_by(zone=zone).first()
         if not domain:
             return self.jsonReturn({'code': -3, 'msg': u'域名不存在'})
+        if not ttl: ttl = 600
         if type in ['A','AAAA','NS','CNAME','TXT','PTR']:
             r = Record(host=host,zone=zone,type=type,data=data,ttl=ttl, comment=comment, create_time=self.time, update_time=self.time)
         else: # type = 'MX'
