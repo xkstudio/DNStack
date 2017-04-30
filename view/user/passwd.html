@@ -37,3 +37,60 @@
     </div>
 </div>
 {% endblock %}
+{% block footer %}
+<script>
+$(function(){
+    var _save_password = function(){
+        var password_old = $("#password_old").val().trim();
+        var password_1 = $("#password_1").val().trim();
+        var password_2 = $("#password_2").val().trim();
+        if (password_old==""){
+            $.xk.toast('原始密码不能为空！');
+            $('#password_old').focus();
+            return false;
+        }
+        if (password_1==""){
+            $.xk.toast('新密码不能为空！');
+            $('#password_1').focus();
+            return false;
+        }
+        if (password_2==""){
+            $.xk.toast('请再输入一次新密码！');
+            $('#password_2').focus();
+            return false;
+        }
+        if (password_1!=password_2){
+            $.xk.toast('两次新密码不一致！');
+            $('#password_1').val('');
+            $('#password_2').val('');
+            $('#password_1').focus();
+            return false;
+        }
+        $.xk.http({
+            type: 'POST',
+            url: '/user/passwd',
+            data: {'password_old':$.xk.md5(password_old),'password':$.xk.md5(password_1)},
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('密码修改成功，请牢记新密码！');
+                    $('#password_old').val('');
+                    $('#password_1').val('');
+                    $('#password_2').val('');
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    };
+    $("#save_btn").click(_save_password);
+});
+</script>
+{% endblock %}
