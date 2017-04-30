@@ -61,3 +61,49 @@
     </div>
 </div>
 {% endblock %}
+{% block footer %}
+<script>
+$(function(){
+    var _save_profile = function(){
+        var data = {
+            'email': $('#email').val().trim(),
+            'nickname': $('#nickname').val().trim(),
+            'phone': $('#phone').val().trim(),
+            'dept': $('#dept').val().trim()
+        };
+        if (data['email']==""){
+            $.xk.toast('邮件地址不能为空！');
+            $('#email').focus();
+            return false;
+        }
+        if (data['nickname']=="0"){
+            $.xk.toast('姓名不能为空！');
+            $('#nickname').focus();
+            return false;
+        }
+        $.xk.http({
+            type: 'POST',
+            url: '/user/profile',
+            data: data,
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('保存成功！');
+                    location.reload();
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    };
+    $("#save_btn").click(_save_profile);
+});
+</script>
+{% endblock %}
