@@ -146,6 +146,10 @@ dlz "mysql zone" {
 };
 ```
 
+#### Start Named
+
+> named -c /usr/local/bind/etc/named.conf
+
 
 ## Startup
 
