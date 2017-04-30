@@ -177,6 +177,35 @@ dlz "mysql zone" {
 > rndc halt
 
 
+## Configure Database
+
+Import SQL
+
+> mysql dnstack < docs/data.sql
+
+Config file config/settings.py
+
+```
+config = {
+    'db': {
+        'host': '127.0.0.1',
+        'port': 3306,
+        'db': 'dnstack',
+        'user': 'test',
+        'passwd': 'test',
+        'charset': 'utf8'
+    },
+    'redis': {
+        'host': '127.0.0.1',
+        'port': 6379,
+        'password': '',
+        'db': '0'
+    },
+    ......
+}
+```
+
+
 ## Startup
 
 > python run.py
