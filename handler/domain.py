@@ -95,7 +95,7 @@ class StatusDomainHandler(BaseHandler):
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
 
-# 删除域名：这里需要添加权限控制
+# 删除域名：这里需要添加权限控制，风险操作！！！
 class DeleteDomainHandler(BaseHandler):
     @Auth
     def post(self):
@@ -105,8 +105,9 @@ class DeleteDomainHandler(BaseHandler):
         data = self.db.query(Domain).filter_by(id=id).first()
         if not data:
             return self.jsonReturn({'code': -2, 'msg': u'域名不存在'})
-        self.db.query(Domain).filter_by(id=id).delete()
-        self.db.query(Groups).filter_by(id=data.gid).update({'domain_count': Groups.domain_count - 1})
+        self.db.query(Domain).filter_by(id=id).delete() # 删除域名
+        self.db.query(Record).filter_by(zone=data.zone).delete() # 删除解析记录
+        self.db.query(Groups).filter_by(id=data.gid).update({'domain_count': Groups.domain_count - 1}) # 更新分组数据统计
         self.db.commit()
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
