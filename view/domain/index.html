@@ -164,7 +164,7 @@ $('.domain-status').click(function(){
     var status = $(this).data('status');
     var domain = $('#domain_name_'+id).html().trim();
     var msg = {'1':'您确认要启用域名 '+domain+' 吗？','2': '您确认要停用域名 '+domain+' 吗？'}
-    $.xk.confirm(msg[status],function(){
+    $.xk.confirm(msg[status],{'title':'操作提示'},function(){
         $.xk.http({
             type: 'POST',
             url: '/domain/status',
