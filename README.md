@@ -8,19 +8,19 @@ DNS Web Admin Based on Bind
 
 #### Dashboard
 
-![Dashboard](raw/master/static/img/screenshot/dashboard.jpg)
+![Dashboard](static/img/screenshot/dashboard.jpg)
 
 
 #### Domain Admin
 
-![Domain](raw/master/static/img/screenshot/domain.jpg)
+![Domain](static/img/screenshot/domain.jpg)
 
 
 #### Record
 
-![Record](raw/master/static/img/screenshot/record.jpg)
+![Record](static/img/screenshot/record.jpg)
 
 
 #### Group
 
-![Group](raw/master/static/img/screenshot/group.jpg)
+![Group](static/img/screenshot/group.jpg)
