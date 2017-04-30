@@ -21,6 +21,7 @@ route = [
     (r'/domain/delete',domain.DeleteDomainHandler),
     (r'/domain/group',domain.GroupHandler),
     (r'/domain/record',domain.RecordHandler),
+    (r'/domain/record/create',domain.CreateRecordHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/500.html',page.Page500Handler),
     (r'/page/error.html',page.PageErrorHandler),
