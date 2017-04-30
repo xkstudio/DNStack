@@ -143,7 +143,7 @@ class CreateRecordHandler(BaseHandler):
         type = self.get_argument('type', None)
         data = self.get_argument('data', None)
         ttl = self.get_argument('ttl')
-        mx_priority = self.get_argument('mx_priority',None)
+        mx_priority = self.get_argument('mx_priority')
         comment = self.get_argument('comment')
         if not host or not zone or not type or not data:
             return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
