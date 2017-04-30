@@ -38,27 +38,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr id="add_record_line" style="display:none;">
-                    <td></td>
-                    <td><input type="text" class="input-record-l" placeholder="主机记录"></td>
-                    <td>
-                        <select style="width: 80px;">
-                            <option value="A">A</option>
-                            <option value="CNAME">CNAME</option>
-                            <option value="MX">MX</option>
-                            <option value="TXT">TXT</option>
-                        </select>
-                    </td>
-                    <td><input type="text" class="input-record-l" placeholder="记录值"></td>
-                    <td><input type="text" class="input-record-s" placeholder="MX"></td>
-                    <td><input type="text" class="input-record-s" placeholder="TTL"></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <button type="button" class="btn btn-xs btn-primary"><i class="fa fa-check fa-fw"></i>保存</button>
-                        <button type="button" class="btn btn-xs btn-danger" onclick="$('#add_record_line').toggle();"><i class="fa fa-times fa-fw"></i>取消</button>
-                    </td>
-                </tr>
                 {% for row in data %}
                 <tr>
                     <td><input id="record_{{ row.id }}" type="checkbox"></td>
