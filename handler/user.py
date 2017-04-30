@@ -83,6 +83,24 @@ class ProfileHandler(BaseHandler):
         profile = self.db.query(User).filter_by(id=uid).first()
         self.render('user/profile.html',profile=profile)
 
+    @Auth
+    def post(self):
+        uid = self.session.get('uid')
+        email = self.get_argument("email") or None
+        phone = self.get_argument("phone") or None
+        nickname = self.get_argument("nickname") or None
+        dept = self.get_argument("dept") or None
+        if not email:
+            return self.jsonReturn({'code': -1, 'msg': u'Email不能为空'})
+        if not nickname:
+            return self.jsonReturn({'code': -1, 'msg': u'姓名不能为空'})
+        chk = self.db.query(User).filter(User.email!=email).first()
+        if chk:
+            return self.jsonReturn({'code': -2, 'msg': u'Email重复'})
+        self.db.query(User).filter_by(id=uid).update({'email':email, 'phone':phone, 'nickname':nickname, 'dept':dept, 'update_time': self.time})
+        self.db.commit()
+        return self.jsonReturn({'code': 0, 'msg': 'Success'})
+
 
 # Password
 class PasswdHandler(BaseHandler):
