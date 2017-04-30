@@ -178,9 +178,9 @@ class UpdateRecordHandler(BaseHandler):
         zone = self.get_argument('zone', None)
         type = self.get_argument('type', None)
         data = self.get_argument('data', None)
-        ttl = self.get_argument('ttl', 600)
-        mx_priority = self.get_argument('mx_priority', None)
-        comment = self.get_argument('comment', None)
+        ttl = self.get_argument('ttl')
+        mx_priority = self.get_argument('mx_priority')
+        comment = self.get_argument('comment')
         if not id or not host or not zone or not type or not data:
             return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
         type = type.upper()
@@ -194,4 +194,15 @@ class UpdateRecordHandler(BaseHandler):
         record = self.db.query(Record).filter_by(id=id).first()
         if not record:
             return self.jsonReturn({'code': -5, 'msg': u'无效解析'})
+        if not ttl: ttl = 600
+        if not comment: comment = None
+        if type in ['A', 'AAAA', 'NS', 'CNAME', 'TXT', 'PTR']:
+            self.db.query(Record).filter_by(id=id).update(
+                {'host': host, 'type': type, 'data': data, 'ttl': ttl, 'comment': comment, 'update_time': self.time})
+        else:
+            if not mx_priority: mx_priority = 10
+            self.db.query(Record).filter_by(id=id).update(
+                {'host': host, 'type': type, 'data': data, 'ttl': ttl, 'mx_priority': mx_priority, 'comment': comment, 'update_time': self.time})
+        self.db.commit()
+        return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
