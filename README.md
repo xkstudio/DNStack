@@ -87,7 +87,7 @@ ln -s /usr/local/bind/sbin/named /usr/sbin
 ln -s /usr/local/bind/sbin/rndc /usr/sbin
 ```
 
-#### Named Config Sample
+#### Configure Named
 
 named.conf
 
