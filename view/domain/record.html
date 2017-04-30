@@ -64,12 +64,12 @@
                     <td id="host_{{ row.id }}">{{ row.host }}</td>
                     <td id="type_{{ row.id }}">{{ row.type }}</td>
                     <td id="data_{{ row.id }}">{{ row.data }}</td>
-                    <td>{{ row.mx_priority or '' }}</td>
-                    <td>{{ row.ttl }}</td>
+                    <td id="mx_priority_{{ row.id }}">{{ row.mx_priority or '' }}</td>
+                    <td id="ttl_{{ row.id }}">{{ row.ttl }}</td>
                     <td>{{ handler.format_time(row.update_time) }}</td>
                     <td>{{ status[row.status] }}</td>
                     <td>
-                        <button type="button" class="btn btn-xs btn-primary" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>编辑</button>
+                        <button type="button" class="btn btn-xs btn-primary edit-record" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>编辑</button>
                         {% if row.status == 1 %}
                         <button type="button" class="btn btn-xs btn-warning" data-id="{{ row.id }}"><i class="fa fa-ban fa-fw"></i>停用</button>
                         {% else %}
@@ -104,18 +104,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="data" class="col-sm-2 control-label">记录值</label>
-                        <div class="col-sm-5">
-                            <input id="data" class="form-control" type="text">
-                        </div>
-                        <div class="col-sm-3">
+                        <label for="type" class="col-sm-2 control-label">记录类型</label>
+                        <div class="col-sm-8">
                             <select class="form-control" id="type">
-                                <option value="0">解析类型</option>
+                                <option value="0">-- 请选择解析类型 --</option>
                                 <option value="A">A</option>
                                 <option value="CNAME">CNAME</option>
                                 <option value="MX">MX</option>
                                 <option value="TXT">TXT</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="data" class="col-sm-2 control-label">记录值</label>
+                        <div class="col-sm-8">
+                            <input id="data" class="form-control" type="text">
                         </div>
                     </div>
                     <div class="form-group">
@@ -125,9 +128,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="mx_pro" class="col-sm-2 control-label">MX优先级</label>
+                        <label for="mx_priority" class="col-sm-2 control-label">MX优先级</label>
                         <div class="col-sm-8">
-                            <input id="mx_pro" class="form-control" type="text">
+                            <input id="mx_priority" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment" class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-8">
+                            <input id="comment" class="form-control" type="text">
                         </div>
                     </div>
                 </form>
@@ -144,6 +153,27 @@
 <script>
 $(function(){
 $('#new_record_btn').click(function(){
+    $('#dialog_title').html('新增解析记录');
+    $('#host').val('');
+    $('#type').val('0');
+    $('#data').val('');
+    $('#mx_priority').val('');
+    $('#ttl').val('');
+    $('#dialog').modal({keyboard:false,backdrop:"static"});
+});
+$('.edit-record').click(function(){
+    $('#dialog_title').html('编辑解析记录');
+    var id = $(this).data('id');
+    var host = $('#host_'+id).html().trim();
+    var type = $('#type_'+id).html().trim();
+    var data = $('#data_'+id).html().trim();
+    var mx_priority = $('#mx_priority_'+id).html().trim();
+    var ttl = $('#ttl_'+id).html().trim();
+    $('#host').val(host);
+    $('#type').val(type);
+    $('#data').val(data);
+    $('#mx_priority').val(mx_priority);
+    $('#ttl').val(ttl);
     $('#dialog').modal({keyboard:false,backdrop:"static"});
 });
 });
