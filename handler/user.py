@@ -79,7 +79,9 @@ class LogoutHandler(BaseHandler):
 class ProfileHandler(BaseHandler):
     @Auth
     def get(self):
-        self.render('user/profile.html')
+        uid = self.session.get('uid')
+        profile = self.db.query(User).filter_by(id=uid).first()
+        self.render('user/profile.html',profile=profile)
 
 
 # Password
