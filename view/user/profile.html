@@ -28,6 +28,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="phone" class="col-sm-1 control-label">手机号</label>
+                <div class="col-sm-4">
+                    <input id="phone" class="form-control" type="text" value="{{ profile.phone or '' }}" placeholder="联系方式">
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="dept" class="col-sm-1 control-label">部门</label>
                 <div class="col-sm-4">
                     <input id="dept" class="form-control" type="text" value="{{ profile.dept or '' }}" placeholder="部门">
