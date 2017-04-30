@@ -39,7 +39,7 @@ class RecordHandler(BaseHandler):
         if zone:
             data = self.db.query(Record).filter_by(zone=zone).order_by(Record.host,Record.type,Record.data).all()
         else:
-            zone = u'请选择域名'
+            zone = ''
             data = []
         status = {1: u'<span style="color:green">已启用</span>', 2: u'<span style="color:red">暂停解析</span>'}
         self.nav_active['/domain/record'] = 'active'
