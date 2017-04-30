@@ -238,3 +238,9 @@ class DeleteRecordHandler(BaseHandler):
         self.db.commit()
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
+
+# 解析数据分析
+class StateDomainHandler(BaseHandler):
+    @Auth
+    def get(self):
+        self.render('domain/state.html')
