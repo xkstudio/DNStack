@@ -41,7 +41,7 @@
                 {% for row in data %}
                 <tr>
                     <td><input id="record_{{ row.id }}" type="checkbox"></td>
-                    <td id="host_{{ row.id }}">{{ row.host }}</td>
+                    <td><a id="host_{{ row.id }}" href="javascript:void(0);" title="{{ row.comment or '' }}">{{ row.host }}</a></td>
                     <td id="type_{{ row.id }}">{{ row.type }}</td>
                     <td id="data_{{ row.id }}">{{ row.data }}</td>
                     <td id="mx_priority_{{ row.id }}">{{ row.mx_priority or '' }}</td>
