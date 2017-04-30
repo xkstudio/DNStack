@@ -49,3 +49,14 @@ Version: **0.0.1-Alpha**
 #### Group
 
 ![Group](static/img/screenshot/group.jpg)
+
+
+## Startup
+
+> python run.py
+
+You can visit the site via http://YourIP:8888/
+
+Specify Port:
+
+> python run.py --port=8081
