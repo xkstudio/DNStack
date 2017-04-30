@@ -158,6 +158,24 @@ dlz "mysql zone" {
 
 > named -c /usr/local/bind/etc/named.conf
 
+#### Control Named
+
+- Get Running Status
+
+> rndc status
+
+- Reload
+
+> rndc reload
+
+- Reload config file
+
+> rndc reconfig
+
+- Shutdown Name
+
+> rndc halt
+
 
 ## Startup
 
