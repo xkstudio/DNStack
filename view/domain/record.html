@@ -144,6 +144,7 @@ $('#new_record_btn').click(function(){
     $('#data').val('');
     $('#mx_priority').val('');
     $('#ttl').val('');
+    $('#comment').val('');
     $('#save_btn').data('id',0);
     $('#save_btn').data('f','create');
     $('#dialog').modal({keyboard:false,backdrop:"static"});
@@ -156,11 +157,13 @@ $('.edit-record').click(function(){
     var data = $('#data_'+id).html().trim();
     var mx_priority = $('#mx_priority_'+id).html().trim();
     var ttl = $('#ttl_'+id).html().trim();
+    var comment = $('#host_'+id).attr('title').trim();
     $('#host').val(host);
     $('#type').val(type);
     $('#data').val(data);
     $('#mx_priority').val(mx_priority);
     $('#ttl').val(ttl);
+    $('#comment').val(comment);
     $('#save_btn').data('id',id);
     $('#save_btn').data('f','update');
     $('#dialog').modal({keyboard:false,backdrop:"static"});
