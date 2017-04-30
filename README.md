@@ -87,6 +87,66 @@ ln -s /usr/local/bind/sbin/named /usr/sbin
 ln -s /usr/local/bind/sbin/rndc /usr/sbin
 ```
 
+#### Named Config Sample
+
+named.conf
+
+```
+key "rndc-key" {
+ 	algorithm hmac-md5;
+ 	secret "kzIcztY4+xH0Px2SrsZyGQ==";
+};
+
+controls {
+	inet 0.0.0.0 port 953
+	    allow { any; } keys { "rndc-key"; };
+};
+
+logging {
+    channel query_log {
+        file "/usr/local/bind/var/log/query.log" versions 1024 size 100m;
+        severity info;
+        print-category no;
+        print-severity no;
+        print-time yes;
+    };
+    category queries { query_log; };
+};
+
+options {
+    listen-on port 53 { any; };
+    listen-on-v6 { none; };
+    directory "/usr/local/bind/var";
+    pid-file "run/named.pid";
+    dump-file "cache_dump.db";
+    statistics-file "named.stats";
+    memstatistics  yes;
+    memstatistics-file "named.memstats";
+    allow-query { any; };
+    forwarders { 114.114.114.114; 8.8.8.8; };
+};
+
+statistics-channels {
+    inet 0.0.0.0 port 8053 allow { any; };
+};
+
+include "/usr/local/bind/etc/local.zone.conf";
+//include "/usr/local/bind/etc/zone.conf";
+include "/usr/local/bind/etc/dlz_mysql.conf";
+```
+
+dlz_mysql.conf
+
+```
+dlz "mysql zone" {
+    database "mysql
+    {host=127.0.0.1 dbname=dnstack ssl=false port=3306 user=test pass=test}
+    {select zone from domain where status = 1 and zone = '$zone$' limit 1}
+    {select ttl, type, mx_priority, case when lower(type)='txt' then concat('\"', data, '\"') when lower(type) = 'soa' then concat_ws(' ', data, resp_person, serial, refresh, retry, expire, minimum) else data end from record where status = 1 and zone = '$zone$' and host ='$record$'}";
+};
+```
+
+
 ## Startup
 
 > python run.py
