@@ -179,6 +179,10 @@ dlz "mysql zone" {
 
 ## Configure Database
 
+Create a database
+
+> mysql> create database dnstack;
+
 Import SQL
 
 > mysql dnstack < [docs/data.sql](docs/data.sql)
