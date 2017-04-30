@@ -101,6 +101,7 @@ $('#new_domain_btn').click(function(){
     $('#group').val(0);
     $('#comment').val('');
     $('#save_btn').data('id',0);
+    $('#save_btn').data('f','create');
     $('#dialog').modal({keyboard:false,backdrop:"static"});
 });
 $('.domain-comment').click(function(){
@@ -113,10 +114,12 @@ $('.domain-comment').click(function(){
     $('#group').val(gid);
     $('#comment').val('');
     $('#save_btn').data('id',id);
+    $('#save_btn').data('f','update');
     $('#dialog').modal({keyboard:false,backdrop:"static"});
 });
-var _create_domain = function(){
+var _save_domain = function(){
         var data = {
+            'id': $('#save_btn').data('id'),
             'domain': $('#domain').val().trim(),
             'gid': $('#group').val(),
             'comment': $('#comment').val().trim()
@@ -131,9 +134,10 @@ var _create_domain = function(){
             $('#group').focus();
             return false;
         }
+        var f = $('#save_btn').data('f');
         $.xk.http({
             type: 'POST',
-            url: '/domain/create',
+            url: '/domain/'+f,
             data: data,
             dataType: "json",
             success: function(response){
@@ -142,7 +146,7 @@ var _create_domain = function(){
                     var msg = response['msg'];
                     $.xk.toast(msg);
                 } else if (code==0){
-                    $.xk.toast('添加成功！');
+                    $.xk.toast('保存成功！');
                     location.reload();
                 } else {
                     $.xk.alert('服务器错误！');
@@ -153,7 +157,7 @@ var _create_domain = function(){
             }
         });
     };
-$("#save_btn").click(_create_domain);
+$("#save_btn").click(_save_domain);
 });
 </script>
 {% endblock %}
