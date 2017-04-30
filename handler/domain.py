@@ -149,12 +149,12 @@ class CreateRecordHandler(BaseHandler):
             return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
         type = type.upper()
         if type not in ['A','AAAA','MX','NS','CNAME','TXT','PTR']:
-            return self.jsonReturn({'code': -1, 'msg': u'解析类型错误'})
+            return self.jsonReturn({'code': -2, 'msg': u'解析类型错误'})
         if host == '@' and type in ['NS','SOA']:
-            return self.jsonReturn({'code': -2, 'msg': u'禁止添加该类型的解析'})
+            return self.jsonReturn({'code': -3, 'msg': u'禁止添加该类型的解析'})
         domain = self.db.query(Domain).filter_by(zone=zone).first()
         if not domain:
-            return self.jsonReturn({'code': -3, 'msg': u'域名不存在'})
+            return self.jsonReturn({'code': -4, 'msg': u'域名不存在'})
         if not ttl: ttl = 600
         if not comment: comment = None
         if type in ['A','AAAA','NS','CNAME','TXT','PTR']:
