@@ -95,6 +95,22 @@ class StatusDomainHandler(BaseHandler):
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
 
+# 删除域名：这里需要添加权限控制
+class DeleteDomainHandler(BaseHandler):
+    @Auth
+    def post(self):
+        id = self.get_argument('id',None)
+        if not id:
+            return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
+        data = self.db.query(Domain).filter_by(id=id).first()
+        if not data:
+            return self.jsonReturn({'code': -2, 'msg': u'域名不存在'})
+        self.db.query(Domain).filter_by(id=id).delete()
+        self.db.query(Groups).filter_by(id=data.gid).update({'domain_count': Groups.domain_count - 1})
+        self.db.commit()
+        return self.jsonReturn({'code': 0, 'msg': 'Success'})
+
+
 class GroupHandler(BaseHandler):
     @Auth
     def get(self):
