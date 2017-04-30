@@ -10,39 +10,39 @@
     <div class="col-lg-12">
         <form class="form-horizontal" role="form">
             <div class="form-group">
-                <label for="" class="col-sm-1 control-label">用户名</label>
+                <label for="username" class="col-sm-1 control-label">用户名</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" value="{{ profile.username }}" placeholder="用户名" disabled>
+                    <input id="username" class="form-control" type="text" value="{{ profile.username }}" placeholder="用户名" disabled>
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="col-sm-1 control-label">邮件地址</label>
+                <label for="email" class="col-sm-1 control-label">邮件地址</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" value="{{ profile.email }}" placeholder="邮件地址">
+                    <input id="email" class="form-control" type="text" value="{{ profile.email }}" placeholder="邮件地址">
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="col-sm-1 control-label">姓名</label>
+                <label for="nickname" class="col-sm-1 control-label">姓名</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" value="{{ profile.nickname or '' }}" placeholder="姓名">
+                    <input id="nickname" class="form-control" type="text" value="{{ profile.nickname or '' }}" placeholder="姓名">
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="col-sm-1 control-label">部门</label>
+                <label for="dept" class="col-sm-1 control-label">部门</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" value="{{ profile.dept or '' }}" placeholder="部门">
+                    <input id="dept" class="form-control" type="text" value="{{ profile.dept or '' }}" placeholder="部门">
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="col-sm-1 control-label">登录时间</label>
+                <label for="login_time" class="col-sm-1 control-label">登录时间</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" value="{{ handler.format_time(profile.login_time) }}" placeholder="登录时间" disabled>
+                    <input id="login_time" class="form-control" type="text" value="{{ handler.format_time(profile.login_time) }}" placeholder="登录时间" disabled>
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="col-sm-1 control-label">登录IP</label>
+                <label for="login_ip" class="col-sm-1 control-label">登录IP</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" value="{{ profile.login_ip or '' }}" placeholder="登录IP" disabled>
+                    <input id="login_ip" class="form-control" type="text" value="{{ profile.login_ip or '' }}" placeholder="登录IP" disabled>
                 </div>
             </div>
             <div class="form-group">
