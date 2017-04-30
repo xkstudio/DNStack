@@ -27,7 +27,7 @@
                 {% for row in data %}
                 <tr>
                     <td><input id="domain_{{ row.id }}" type="checkbox"></td>
-                    <td><a href="/domain/record?zone={{ row.zone }}" id="domain_name_{{ row.id }}">{{ row.zone }}</a></td>
+                    <td><a href="/domain/record?zone={{ row.zone }}" id="domain_name_{{ row.id }}" data-gid="{{ row.gid }}">{{ row.zone }}</a></td>
                     <td>{{ group[row.gid] }}</td>
                     <td>{{ handler.format_time(row.create_time) }}</td>
                     <td>{{ row.count }}</td>
@@ -40,7 +40,7 @@
                         <button type="button" class="btn btn-xs btn-success" data-id="{{ row.id }}"><i class="fa fa-check fa-fw"></i>启用</button>
                         {% endif %}
                         <button type="button" class="btn btn-xs btn-danger" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
-                        <button type="button" class="btn btn-xs btn-primary" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>备注</button>
+                        <button type="button" class="btn btn-xs btn-primary domain-comment" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>备注</button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -96,6 +96,24 @@
 <script>
 $(function(){
 $('#new_domain_btn').click(function(){
+    $('#dialog_title').html('添加域名');
+    $('#domain').val('');
+    $('#domain').attr('disabled',false);
+    $('#group').val(0);
+    $('#comment').val('');
+    $('#save_btn').data('id',0);
+    $('#dialog').modal({keyboard:false,backdrop:"static"});
+});
+$('.domain-comment').click(function(){
+    $('#dialog_title').html('编辑域名');
+    var id = $(this).data('id');
+    var domain = $('#domain_name_'+id).html().trim();
+    var gid = $('#domain_name_'+id).data('gid');
+    $('#domain').val(domain);
+    $('#domain').attr('disabled',true);
+    $('#group').val(gid);
+    $('#comment').val('');
+    $('#save_btn').data('id',id);
     $('#dialog').modal({keyboard:false,backdrop:"static"});
 });
 });
