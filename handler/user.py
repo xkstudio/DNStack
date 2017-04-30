@@ -107,3 +107,15 @@ class PasswdHandler(BaseHandler):
     @Auth
     def get(self):
         self.render('user/passwd.html')
+
+    @Auth
+    def post(self):
+        password_old = self.get_argument("password_old") or None
+        password = self.get_argument("password") or None
+        if not password_old or not password:
+            return self.jsonReturn({'code': -1, 'msg': u'密码不能为空'})
+        uid = self.session.get('uid')
+        profile = self.db.query(User).filter_by(id=uid).first()
+        password_old_hash = self.md5(password_old + profile.password_key)
+        if password_old_hash != profile.password:
+            return self.jsonReturn({'code': -2, 'msg': u'原始密码错误'})
