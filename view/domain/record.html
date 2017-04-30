@@ -72,9 +72,9 @@
                     <td>
                         <button type="button" class="btn btn-xs btn-primary edit-record" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>编辑</button>
                         {% if row.status == 1 %}
-                        <button type="button" class="btn btn-xs btn-warning" data-id="{{ row.id }}"><i class="fa fa-ban fa-fw"></i>停用</button>
+                        <button type="button" class="btn btn-xs btn-warning record-status" data-id="{{ row.id }}" data-status="2"><i class="fa fa-ban fa-fw"></i>停用</button>
                         {% else %}
-                        <button type="button" class="btn btn-xs btn-success" data-id="{{ row.id }}"><i class="fa fa-check fa-fw"></i>启用</button>
+                        <button type="button" class="btn btn-xs btn-success record-status" data-id="{{ row.id }}" data-status="1"><i class="fa fa-check fa-fw"></i>启用</button>
                         {% endif %}
                         <button type="button" class="btn btn-xs btn-danger" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
                     </td>
@@ -237,6 +237,34 @@ var _save_record = function(){
         });
 };
 $("#save_btn").click(_save_record);
+$('.record-status').click(function(){
+    var id = $(this).data('id');
+    var status = $(this).data('status');
+    var msg = {'1':'您确认要启用该条解析吗？','2': '您确认要停用该条解析吗？'};
+    $.xk.confirm(msg[status],{'title':'操作提示'},function(){
+        $.xk.http({
+            type: 'POST',
+            url: '/domain/record/status',
+            data: {'id':id,'status':status},
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('操作成功！');
+                    location.reload();
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    });
+});
 });
 </script>
 {% endblock %}
