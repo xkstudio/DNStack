@@ -100,7 +100,7 @@
                             <div class="input-group">
                                 <!--<div class="input-group-addon">前缀</div>-->
                                 <input id="host" class="form-control" type="text" placeholder="主机记录">
-                                <div class="input-group-addon">.{{ zone }}</div>
+                                <div class="input-group-addon" id="zone" data-zone="{{ zone }}">.{{ zone }}</div>
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                     <div class="form-group">
                         <label for="ttl" class="col-sm-2 control-label">TTL</label>
                         <div class="col-sm-8">
-                            <input id="ttl" class="form-control" type="text">
+                            <input id="ttl" class="form-control" type="text" value="600">
                         </div>
                     </div>
                     <div class="form-group">
@@ -161,6 +161,8 @@ $('#new_record_btn').click(function(){
     $('#data').val('');
     $('#mx_priority').val('');
     $('#ttl').val('');
+    $('#save_btn').data('id',0);
+    $('#save_btn').data('f','create');
     $('#dialog').modal({keyboard:false,backdrop:"static"});
 });
 $('.edit-record').click(function(){
@@ -176,6 +178,8 @@ $('.edit-record').click(function(){
     $('#data').val(data);
     $('#mx_priority').val(mx_priority);
     $('#ttl').val(ttl);
+    $('#save_btn').data('id',id);
+    $('#save_btn').data('f','update');
     $('#dialog').modal({keyboard:false,backdrop:"static"});
 });
 $('#switch_domain').click(function(){
@@ -183,6 +187,56 @@ $('#switch_domain').click(function(){
     if (domain=="") return false;
     location.href = '?zone=' + domain;
 });
+var _save_record = function(){
+    var data = {
+            'id': $('#save_btn').data('id'),
+            'host': $('#host').val().trim(),
+            'zone': $('#zone').data('zone').trim(),
+            'type': $('#type').val(),
+            'data': $('#data').val().trim(),
+            'ttl': $('#ttl').val().trim(),
+            'mx_priority': $('#mx_priority').val().trim(),
+            'comment': $('#comment').val().trim()
+        };
+        if (data['host']==""){
+            $.xk.toast('主机记录不能为空！');
+            $('#host').focus();
+            return false;
+        }
+        if (data['type']=="0"){
+            $.xk.toast('请选择记录类型！');
+            $('#type').focus();
+            return false;
+        }
+        if (data['data']==""){
+            $.xk.toast('记录值不能为空！');
+            $('#dat').focus();
+            return false;
+        }
+        var f = $('#save_btn').data('f');
+        $.xk.http({
+            type: 'POST',
+            url: '/domain/record/'+f,
+            data: data,
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('保存成功！');
+                    location.reload();
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+};
+$("#save_btn").click(_save_record);
 });
 </script>
 {% endblock %}
