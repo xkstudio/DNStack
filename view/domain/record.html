@@ -76,7 +76,7 @@
                         {% else %}
                         <button type="button" class="btn btn-xs btn-success record-status" data-id="{{ row.id }}" data-status="1"><i class="fa fa-check fa-fw"></i>启用</button>
                         {% endif %}
-                        <button type="button" class="btn btn-xs btn-danger" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
+                        <button type="button" class="btn btn-xs btn-danger record-delete" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -254,6 +254,33 @@ $('.record-status').click(function(){
                     $.xk.toast(msg);
                 } else if (code==0){
                     $.xk.toast('操作成功！');
+                    location.reload();
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    });
+});
+$('.record-delete').click(function(){
+    var id = $(this).data('id');
+    var msg = '您确认要删除该条解析记录吗？';
+    $.xk.confirm(msg,{'title':'删除提示'},function(){
+        $.xk.http({
+            type: 'POST',
+            url: '/domain/record/delete',
+            data: {'id':id},
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('删除成功！');
                     location.reload();
                 } else {
                     $.xk.alert('服务器错误！');
