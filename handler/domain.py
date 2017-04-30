@@ -133,3 +133,37 @@ class RecordHandler(BaseHandler):
         self.nav_active['/domain/record'] = 'active'
         self.render('domain/record.html',data=data,status=status,zone=zone)
 
+
+# 新增记录
+class CreateRecordHandler(BaseHandler):
+    @Auth
+    def post(self):
+        host = self.get_argument('host', None)
+        zone = self.get_argument('zone', None)
+        type = self.get_argument('type', None)
+        data = self.get_argument('data', None)
+        ttl = self.get_argument('ttl', 600)
+        mx_priority = self.get_argument('mx_priority', None)
+        comment = self.get_argument('comment', None)
+        if not host or not zone or not type or not data:
+            return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
+        type = type.upper()
+        if type not in ['A','AAAA','MX','NS','CNAME','TXT','PTR']:
+            return self.jsonReturn({'code': -1, 'msg': u'解析类型错误'})
+        if host == '@' and type in ['NS','SOA']:
+            return self.jsonReturn({'code': -2, 'msg': u'禁止添加该类型的解析'})
+        domain = self.db.query(Domain).filter_by(zone=zone).first()
+        if not domain:
+            return self.jsonReturn({'code': -3, 'msg': u'域名不存在'})
+        if type in ['A','AAAA','NS','CNAME','TXT','PTR']:
+            r = Record(host=host,zone=zone,type=type,data=data,ttl=ttl, comment=comment, create_time=self.time, update_time=self.time)
+        else: # type = 'MX'
+            if not mx_priority:
+                mx_priority = 10
+            r = Record(host=host, zone=zone, type=type, data=data, ttl=ttl, mx_priority=mx_priority, comment=comment, create_time=self.time,update_time=self.time)
+        self.db.add(r)
+        self.db.query(Domain).filter_by(id=domain.id).update({'record_count': Domain.record_count + 1}) # 更新记录统计
+        self.db.commit()
+        return self.jsonReturn({'code': 0, 'msg': 'Success'})
+
+
