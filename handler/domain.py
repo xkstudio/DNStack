@@ -79,6 +79,21 @@ class UpdateDomainHandler(BaseHandler):
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
 
+# 域名状态管理
+class StatusDomainHandler(BaseHandler):
+    @Auth
+    def post(self):
+        status = self.get_argument('status',None) # 1 or 2
+        id = self.get_argument('id',None)
+        if not id and status not in ['1','2']:
+            return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
+        data = self.db.query(Domain).filter_by(id=id).first()
+        if not data:
+            return self.jsonReturn({'code': -2, 'msg': u'域名不存在'})
+        self.db.query(Domain).filter_by(id=id).update({'status': status, 'update_time': self.time})
+        return self.jsonReturn({'code': 0, 'msg': 'Success'})
+
+
 class GroupHandler(BaseHandler):
     @Auth
     def get(self):
