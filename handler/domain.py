@@ -243,4 +243,5 @@ class DeleteRecordHandler(BaseHandler):
 class StateDomainHandler(BaseHandler):
     @Auth
     def get(self):
+        self.nav_active['/domain/state'] = 'active'
         self.render('domain/state.html')
