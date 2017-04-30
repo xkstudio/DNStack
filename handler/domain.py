@@ -206,3 +206,19 @@ class UpdateRecordHandler(BaseHandler):
         self.db.commit()
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
+
+# 记录状态管理
+class StatusRecordHandler(BaseHandler):
+    @Auth
+    def post(self):
+        id = self.get_argument('id', None)
+        status = self.get_argument('status',None) # 1 or 2
+        if not id and status not in ['1','2']:
+            return self.jsonReturn({'code': -1, 'msg': u'参数错误'})
+        data = self.db.query(Record).filter_by(id=id).first()
+        if not data:
+            return self.jsonReturn({'code': -2, 'msg': u'解析不存在'})
+        self.db.query(Record).filter_by(id=id).update({'status': status, 'update_time': self.time})
+        self.db.commit()
+        return self.jsonReturn({'code': 0, 'msg': 'Success'})
+
