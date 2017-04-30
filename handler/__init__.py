@@ -22,6 +22,7 @@ route = [
     (r'/domain/group',domain.GroupHandler),
     (r'/domain/record',domain.RecordHandler),
     (r'/domain/record/create',domain.CreateRecordHandler),
+    (r'/domain/record/update',domain.UpdateRecordHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/500.html',page.Page500Handler),
     (r'/page/error.html',page.PageErrorHandler),
