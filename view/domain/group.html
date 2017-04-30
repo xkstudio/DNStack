@@ -25,7 +25,7 @@
                 <tr>
                     <td id="gid_{{ row.id }}"><input type="checkbox"></td>
                     <td id="name_{{ row.id }}">{{ row.name }}</td>
-                    <td>--</td>
+                    <td>{{ row.domain_count }}</td>
                     <td>
                         <button type="button" class="btn btn-xs btn-primary edit-group" data-id="{{ row.id }}"><i class="fa fa-edit fa-fw"></i>编辑</button>
                         <button type="button" class="btn btn-xs btn-danger" data-id="{{ row.id }}"><i class="fa fa-times fa-fw"></i>删除</button>
