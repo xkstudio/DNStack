@@ -181,7 +181,7 @@ dlz "mysql zone" {
 
 Import SQL
 
-> mysql dnstack < docs/data.sql
+> mysql dnstack < [docs/data.sql](docs/data.sql)
 
 Config file config/settings.py
 
