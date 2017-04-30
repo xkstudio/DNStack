@@ -10,6 +10,8 @@ Version: **0.0.1-Alpha**
 
 ## Dependency Component
 
+- [Bind](http://www.isc.org)：9.9+
+
 - [Torweb](https://github.com/kkstu/Torweb)：1.0+
 
 - [Tornado](http://www.tornadoweb.org/)：4.0+
