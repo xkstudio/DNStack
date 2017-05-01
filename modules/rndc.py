@@ -7,11 +7,19 @@ class rndc:
     def __init__(self,host,port,algo,secret):
         try:
             from isc.rndc import rndc as isc_rndc
+            self.rndc = isc_rndc((host, int(port)), algo, secret)
         except:
             print 'Not Found ISC Module'
-            isc_rndc = None
-        self.rndc = isc_rndc((host,int(port)),algo,secret)
-        self.call = self.rndc.call
+            self.rndc = None
+
+
+    def call(self,arg):
+        if self.rndc:
+            data = self.rndc.call(arg)
+        else:
+            data = {}
+        return data
+
 
     def get_status(self):
         _st = self.call('status')
@@ -31,8 +39,6 @@ class rndc:
             elif i == 'server is up and running':
                 data['running'] = 'Running'
         return data
-
-
 
 
 if __name__ == '__main__':
