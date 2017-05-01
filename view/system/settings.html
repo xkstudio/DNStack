@@ -17,25 +17,28 @@
                 <div class="col-sm-4">
                     <input id="license" class="form-control" type="text" value="{{ data.license['value'] or '' }}" placeholder="License" disabled>
                 </div>
+                <div class="col-sm-3" style="margin-top: 6px"><i class="fa fa-asterisk" style="color: red;font-size: 10px"></i> 永久授权</div>
             </div>
             <div class="form-group">
                 <label for="primary_ns" class="col-sm-2 control-label">主DNS</label>
                 <div class="col-sm-4">
                     <input id="primary_ns" class="form-control" type="text" value="{{ data.primary_ns['value'] or '' }}" placeholder="主要DNS">
                 </div>
-                <div class="col-sm-3" style="margin-top: 6px"><i class="fa fa-asterisk" style="color: red;font-size: 10px"></i> 建议不要随意更改</div>
+                <div class="col-sm-3" style="margin-top: 6px"><i class="fa fa-asterisk" style="color: red;font-size: 10px"></i> 英文句点结尾，例如：ns1.qq.com.</div>
             </div>
             <div class="form-group">
                 <label for="second_ns" class="col-sm-2 control-label">辅DNS</label>
                 <div class="col-sm-4">
                     <input id="second_ns" class="form-control" type="text" value="{{ data.second_ns['value'] or '' }}" placeholder="辅助DNS">
                 </div>
+                <div class="col-sm-3" style="margin-top: 6px"><i class="fa fa-asterisk" style="color: red;font-size: 10px"></i> 英文句点结尾，例如：ns2.qq.com.</div>
             </div>
             <div class="form-group">
                 <label for="resp_person" class="col-sm-2 control-label">联系人</label>
                 <div class="col-sm-4">
                     <input id="resp_person" class="form-control" type="text" value="{{ data.resp_person['value'] or '' }}" placeholder="联系人邮件（在SOA记录显示）">
                 </div>
+                <div class="col-sm-3" style="margin-top: 6px"><i class="fa fa-asterisk" style="color: red;font-size: 10px"></i> 不加'@'符号，例如：admin.qq.com.</div>
             </div>
             <div class="form-group">
                 <label for="rndc_host" class="col-sm-2 control-label">RNDC主机</label>
