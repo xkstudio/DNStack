@@ -6,17 +6,21 @@ import socket
 class rndc:
 
     def __init__(self,host,port,algo,secret):
+        self.err_msg = ''
         try:
             from isc.rndc import rndc as isc_rndc
             self.rndc = isc_rndc((host, int(port)), algo, secret)
         except ImportError:
-            print 'Not Found ISC Module'
+            self.err_msg = 'Not Found ISC (RNDC) Module'
+            print self.err_msg
             self.rndc = None
         except socket.error, e: # 网络层问题，rndc_host或者rndc_port错了
+            self.err_msg = 'Can not connect to DNS Server'
             print 'Socket Error'
             #print e # [Errno 111] Connection refused
             self.rndc = None
         except Exception, e: # Key错误时有出现该错误
+            self.err_msg = 'RNDC Config Error'
             print type(e) # <type 'exceptions.TypeError'>
             print e # Incorrect padding
             self.rndc = None
