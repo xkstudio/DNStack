@@ -15,49 +15,49 @@
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">License</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" placeholder="License" disabled>
+                    <input id="" class="form-control" type="text" value="{{ data.license['value'] or '' }}" placeholder="License" disabled>
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">主DNS</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" placeholder="主要DNS">
+                    <input id="" class="form-control" type="text" value="{{ data.primary_ns['value'] or '' }}" placeholder="主要DNS">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">辅DNS</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" placeholder="辅助DNS">
+                    <input id="" class="form-control" type="text" value="{{ data.second_ns['value'] or '' }}" placeholder="辅助DNS">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">联系人</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" placeholder="联系人邮件（在SOA记录显示）">
+                    <input id="" class="form-control" type="text" value="{{ data.resp_person['value'] or '' }}" placeholder="联系人邮件（在SOA记录显示）">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">RNDC主机</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" placeholder="RNDC主机">
+                    <input id="" class="form-control" type="text" value="{{ data.rndc_host['value'] or '' }}" placeholder="RNDC主机">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">RNDC端口</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" placeholder="RNDC端口">
+                    <input id="" class="form-control" type="text" value="{{ data.rndc_port['value'] or '' }}" placeholder="RNDC端口">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">RNDC Algo</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" placeholder="RNDC Algo">
+                    <input id="" class="form-control" type="text" value="{{ data.rndc_algo['value'] or '' }}" placeholder="RNDC Algo">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label">RNDC Key</label>
                 <div class="col-sm-4">
-                    <input id="" class="form-control" type="text" placeholder="RNDC Key">
+                    <input id="" class="form-control" type="text" value="{{ data.rndc_secret['value'] or '' }}" placeholder="RNDC Key">
                 </div>
             </div>
             <div class="form-group">
