@@ -14,9 +14,15 @@
     <li class="{{ handler.nav_active['/domain/state'] }}">
         <a href="/domain/state"><i class="fa fa-fw fa-bar-chart"></i> 数据分析</a>
     </li>
-    <li class="{{ handler.nav_active['/user'] }}">
-        <a href="javascript:void(0);" data-toggle="collapse" data-target="#setting"><i class="fa fa-fw fa-user-circle"></i> 用户中心 <i class="fa fa-fw fa-caret-down"></i></a>
+    <li class="{{ handler.nav_active['/system/state'] }}">
+        <a href="/system/state"><i class="fa fa-fw fa-adjust"></i> 系统管理</a>
+    </li>
+    <li class="{{ handler.nav_active['/settings'] }}">
+        <a href="javascript:void(0);" data-toggle="collapse" data-target="#setting"><i class="fa fa-fw fa-gear"></i> 设置中心 <i class="fa fa-fw fa-caret-down"></i></a>
         <ul id="setting" class="collapse">
+            <li>
+                <a href="/system/settings">系统设置</a>
+            </li>
             <li>
                 <a href="/user/profile">个人资料</a>
             </li>
