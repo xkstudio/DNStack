@@ -225,3 +225,8 @@ Specify Port:
 To report an issue with DNStack.
 
 https://github.com/kkstu/DNStack/issues
+
+
+## Contributors
+
+After the version 1.0-Stable release.
