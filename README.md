@@ -230,3 +230,19 @@ https://github.com/kkstu/DNStack/issues
 ## Contributors
 
 After the version 1.0-Stable release.
+
+
+## Technology Communications
+
+#### Wechat
+
+![Python运维圈](https://github.com/luxiaok/SaltAdmin/raw/master/static/images/ops_circle_qrcode.jpg)
+
+#### QQ Group
+
+459457262
+
+
+#### Development Team
+
+http://studio.luxiaok.com
