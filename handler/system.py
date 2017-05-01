@@ -5,6 +5,7 @@
 from BaseHandler import BaseHandler
 from tornado.web import authenticated as Auth
 from model.models import Options
+from modules.rndc import rndc
 
 class StateHandler(BaseHandler):
 
