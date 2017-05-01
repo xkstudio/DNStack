@@ -5,6 +5,7 @@ import index
 import page
 import user
 import domain
+import system
 
 route = [
     (r'/',index.IndexHandler),
@@ -26,6 +27,8 @@ route = [
     (r'/domain/record/update',domain.UpdateRecordHandler),
     (r'/domain/record/status',domain.StatusRecordHandler),
     (r'/domain/record/delete',domain.DeleteRecordHandler),
+    (r'/system/state',system.StateHandler),
+    (r'/system/settings',system.SettingsHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/500.html',page.Page500Handler),
     (r'/page/error.html',page.PageErrorHandler),
