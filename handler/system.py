@@ -15,7 +15,8 @@ class StateHandler(BaseHandler):
         ops = self.get_options()
         r = rndc(ops['rndc_host']['value'],ops['rndc_port']['value'],ops['rndc_algo']['value'],ops['rndc_secret']['value'])
         status = r.get_status()
-        self.render('system/state.html',status=status)
+        rndc_error = r.err_msg
+        self.render('system/state.html',status=status,error=rndc_error)
 
 
 class SettingsHandler(BaseHandler):
