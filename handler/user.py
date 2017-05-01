@@ -81,7 +81,7 @@ class ProfileHandler(BaseHandler):
     def get(self):
         uid = self.session.get('uid')
         profile = self.db.query(User).filter_by(id=uid).first()
-        self.nav_active['/user'] = 'active'
+        self.nav_active['/settings'] = 'active'
         self.render('user/profile.html',profile=profile)
 
     @Auth
@@ -109,7 +109,7 @@ class ProfileHandler(BaseHandler):
 class PasswdHandler(BaseHandler):
     @Auth
     def get(self):
-        self.nav_active['/user'] = 'active'
+        self.nav_active['/settings'] = 'active'
         self.render('user/passwd.html')
 
     @Auth
