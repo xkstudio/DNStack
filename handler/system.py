@@ -12,7 +12,10 @@ class StateHandler(BaseHandler):
     @Auth
     def get(self):
         self.nav_active['/system/state'] = 'active'
-        self.render('system/state.html')
+        ops = self.get_options()
+        r = rndc(ops['rndc_host']['value'],ops['rndc_port']['value'],ops['rndc_algo']['value'],ops['rndc_secret']['value'])
+        status = r.get_status()
+        self.render('system/state.html',status=status)
 
 
 class SettingsHandler(BaseHandler):
