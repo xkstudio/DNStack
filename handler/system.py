@@ -12,3 +12,10 @@ class StateHandler(BaseHandler):
     def get(self):
         self.render('system/state.html')
 
+
+class SettingsHandler(BaseHandler):
+
+    @Auth
+    def get(self):
+        self.render('system/settings.html')
+
