@@ -15,7 +15,7 @@ class rndc:
             print self.err_msg
             self.rndc = None
         except socket.error, e: # 网络层问题，rndc_host或者rndc_port错了
-            self.err_msg = 'Can not connect to DNS Server'
+            self.err_msg = 'RNDC: Can not connect to DNS Server'
             print 'Socket Error'
             #print e # [Errno 111] Connection refused
             self.rndc = None
