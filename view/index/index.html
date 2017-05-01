@@ -24,159 +24,28 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12" style="margin-bottom:26px;">
         <div class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             欢迎您，{{ handler.session.get('nickname') }}！您上次登录时间为：{{ handler.format_time(handler.session.get('login_time')) }}，登录IP：{{ handler.session.get('login_ip') }}
         </div>
     </div>
-        <div class="col-sm-3" style="text-align: center;">
-            <div id="domain_count" class="justgage-box" data-v="{{ data.domain }}"></div>
-            <div>域名</div>
-        </div>
-        <div class="col-sm-3" style="text-align:center;">
-            <div id="record_count" class="justgage-box" data-v="{{ data.record }}"></div>
-            <div>记录</div>
-        </div>
-        <div class="col-sm-3" style="text-align: center;">
-            <div id="group_count" class="justgage-box" data-v="{{ data.group }}"></div>
-            <div>分组</div>
-        </div>
-        <div class="col-sm-3" style="text-align: center;">
-            <div id="user_count" class="justgage-box" data-v="{{ data.user }}"></div>
-            <div>用户</div>
-        </div>
+    <div class="col-sm-3" style="text-align: center;">
+        <div id="domain_count" class="justgage-box" data-v="{{ data.domain }}"></div>
+        <div>域名</div>
     </div>
-<div class="row">
-    <div class="col-lg-4">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-flag fa-fw"></i> 欢迎</h3>
-            </div>
-            <div class="panel-body">
-                <p>欢迎您，{{ handler.session.get('nickname') }}！</p>
-                <p><span class="title-box-2">上次登录时间：</span>{{ handler.format_time(handler.session.get('login_time')) }}</p>
-                <p><span class="title-box-2">上次登录地区：</span>{{ handler.session.get('login_location') or '未知' }}</p>
-                <p><span class="title-box-2">上次登录IP：</span>{{ handler.session.get('login_ip') }}</p>
-            </div>
-        </div>
+    <div class="col-sm-3" style="text-align:center;">
+        <div id="record_count" class="justgage-box" data-v="{{ data.record }}"></div>
+        <div>记录</div>
     </div>
-    <div class="col-lg-3">
-        <div class="panel panel-yellow">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-info-circle fa-fw"></i> 系统状态</h3>
-            </div>
-            <div class="panel-body">
-                <p><span class="title-box-1">系统版本：</span><span>{{ handler.app_version }}</span></p>
-                <p><span class="title-box-1">Bind版本：</span><span>9.11.P5</span></p>
-                <p><span class="title-box-1">运行时长：</span><span>15天19小时29分</span></p>
-                <p><span class="title-box-1">运行状态：</span><span>运行中</span></p>
-            </div>
-        </div>
+    <div class="col-sm-3" style="text-align: center;">
+        <div id="group_count" class="justgage-box" data-v="{{ data.group }}"></div>
+        <div>分组</div>
     </div>
-    <div class="col-lg-3">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart fa-fw"></i> 数据统计</h3>
-            </div>
-            <div class="panel-body">
-                <p><span class="title-box-1">域名统计：</span><span class="label label-primary" style="font-size: 15px;">{{ data.domain }}</span></p>
-                <p><span class="title-box-1">记录统计：</span><span class="label label-success" style="font-size: 15px;">{{ data.record }}</span></p>
-                <p><span class="title-box-1">分组统计：</span><span class="label label-warning" style="font-size: 15px;">{{ data.group }}</span></p>
-                <p><span class="title-box-1">用户统计：</span><span class="label label-danger" style="font-size: 15px;">{{ data.user }}</span></p>
-            </div>
-        </div>
+    <div class="col-sm-3" style="text-align: center;">
+        <div id="user_count" class="justgage-box" data-v="{{ data.user }}"></div>
+        <div>用户</div>
     </div>
-</div>
-<div class="row hidden">
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-eercast fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">6</div>
-                        <div>域名</div>
-                    </div>
-                </div>
-            </div>
-            <a href="/domain">
-                <div class="panel-footer">
-                    <span class="pull-left">域名管理</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-green">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-tasks fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">127</div>
-                        <div>解析记录</div>
-                    </div>
-                </div>
-            </div>
-            <a href="/record">
-                <div class="panel-footer">
-                    <span class="pull-left">解析管理</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-yellow">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-object-group fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">1</div>
-                        <div>分组</div>
-                    </div>
-                </div>
-            </div>
-            <a href="/domain/groups">
-                <div class="panel-footer">
-                    <span class="pull-left">分组管理</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-user-circle fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                        <div class="huge">1</div>
-                        <div>用户</div>
-                    </div>
-                </div>
-            </div>
-            <a href="/user">
-                <div class="panel-footer">
-                    <span class="pull-left">用户管理</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-     </div>
 </div>
 {% endblock %}
 {% block footer %}
