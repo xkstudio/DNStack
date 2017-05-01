@@ -22,7 +22,7 @@ class BaseHandler(tornado.web.RequestHandler):
         # Current Route
         self.url = self.get_current_route()
         # Nav Style Class
-        self.nav_active = {'/':'','/domain':'','/domain/group':'','/domain/record':'','/domain/state':'','/user':''}
+        self.nav_active = {'/':'','/domain':'','/domain/group':'','/domain/record':'','/domain/state':'','/system/state':'','/settings':''}
         # Copyright Year
         self.copyright_year = self.format_time(self.time,'%Y')
 
