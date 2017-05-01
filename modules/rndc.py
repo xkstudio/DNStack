@@ -16,7 +16,22 @@ class rndc:
     def get_status(self):
         _st = self.call('status')
         status = _st['text'].split('\n')
-        return status
+        return self.parse_status(status)
+
+    def parse_status(self,status):
+        data = {'version':'','uptime':'','running':'Unknown'}
+        for i in status:
+            i = str(i)
+            if 'version:' in i:
+                data['version'] = i.split('version: ')[1]
+            elif 'boot time: ' in i:
+                data['uptime'] = i.split('boot time: ')[1]
+            elif 'boot time: ' in i:
+                data['uptime'] = i.split('boot time: ')[1]
+            elif i == 'server is up and running':
+                data['running'] = 'Running'
+        return data
+
 
 
 
