@@ -8,6 +8,7 @@ import time
 import hashlib
 from app.Session import Session
 from random import Random
+from model.models import Options
 
 class BaseHandler(tornado.web.RequestHandler):
 
@@ -116,4 +117,13 @@ class BaseHandler(tornado.web.RequestHandler):
         for i in range(N):
             str += chars[random.randint(0, length)]
         return str
+
+
+    # 获取配置
+    def get_options(self):
+        _ops = self.db.query(Options).all()
+        ops = {}
+        for i in _ops:
+            ops[i.name] = {'id':i.id,'name':i.name,'value':i.value,'default':i.default_value}
+        return ops
 
