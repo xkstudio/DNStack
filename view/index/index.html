@@ -10,8 +10,8 @@
     width: 120px;
 }
 .justgage-box {
-        width: 120px;
-        height: 120px;
+        width: 160px;
+        height: 160px;
         display: inline-block;
     }
 </style>
@@ -27,7 +27,7 @@
     <div class="col-lg-12">
         <div class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            消息提示
+            欢迎您，{{ handler.session.get('nickname') }}！您上次登录时间为：{{ handler.format_time(handler.session.get('login_time')) }}，登录IP：{{ handler.session.get('login_ip') }}
         </div>
     </div>
         <div class="col-sm-3" style="text-align: center;">
