@@ -246,3 +246,8 @@ After the version 1.0-Stable release.
 #### Development Team
 
 http://studio.luxiaok.com
+
+
+## License
+
+This project is under the MIT License. See the [LICENSE](LICENSE) file for the full license text.
