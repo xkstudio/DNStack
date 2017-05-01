@@ -70,3 +70,52 @@
     </div>
 </div>
 {% endblock %}
+{% block footer %}
+<script>
+$(function(){
+    var _save_settings = function(){
+        var data = {
+            'primary_ns': $('#primary_ns').val().trim(),
+            'second_ns': $('#second_ns').val().trim(),
+            'resp_person': $('#resp_person').val().trim(),
+            'rndc_host': $('#rndc_host').val().trim(),
+            'rndc_port': $('#rndc_port').val().trim(),
+            'rndc_algo': $('#rndc_algo').val().trim(),
+            'rndc_secret': $('#rndc_secret').val().trim()
+        };
+        if (data['primary_ns']==""){
+            $.xk.toast('主DNS不能为空！');
+            $('#primary_ns').focus();
+            return false;
+        }
+        if (data['resp_person']==""){
+            $.xk.toast('联系人不能为空！');
+            $('#resp_person').focus();
+            return false;
+        }
+        $.xk.http({
+            type: 'POST',
+            url: '/system/settings',
+            data: data,
+            dataType: "json",
+            success: function(response){
+                var code = response['code'];
+                if (code<0){
+                    var msg = response['msg'];
+                    $.xk.toast(msg);
+                } else if (code==0){
+                    $.xk.toast('保存成功！');
+                    location.reload();
+                } else {
+                    $.xk.alert('服务器错误！');
+                }
+            },
+            error: function(){
+                $.xk.alert('系统繁忙，请稍后再试！');
+            }
+        });
+    };
+    $("#save_btn").click(_save_settings);
+});
+</script>
+{% endblock %}
