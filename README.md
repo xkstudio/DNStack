@@ -229,7 +229,7 @@ https://github.com/kkstu/DNStack/issues
 
 ## Contributors
 
-After the version 1.0-Stable release.
+After the version **1.0-Stable** release.
 
 
 ## Technology Communications
