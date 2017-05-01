@@ -52,8 +52,6 @@ class rndc:
                 data['version'] = v.split(' ')[1]
             elif 'boot time: ' in i:
                 data['uptime'] = i.split('boot time: ')[1]
-            elif 'boot time: ' in i:
-                data['uptime'] = i.split('boot time: ')[1]
             elif i == 'server is up and running':
                 data['running'] = 'Running'
         return data
