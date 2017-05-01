@@ -9,6 +9,11 @@
     display: inline-block;
     width: 120px;
 }
+.justgage-box {
+        width: 120px;
+        height: 120px;
+        display: inline-block;
+    }
 </style>
 {% endblock %}
 {% block content %}
@@ -18,6 +23,24 @@
         <hr>
     </div>
 </div>
+<div class="row">
+        <div class="col-sm-3" style="text-align: center;">
+            <div id="domain_count" class="justgage-box" data-v="{{ data.domain }}"></div>
+            <div>域名</div>
+        </div>
+        <div class="col-sm-3" style="text-align:center;">
+            <div id="record_count" class="justgage-box" data-v="{{ data.record }}"></div>
+            <div>记录</div>
+        </div>
+        <div class="col-sm-3" style="text-align: center;">
+            <div id="group_count" class="justgage-box" data-v="{{ data.group }}"></div>
+            <div>分组</div>
+        </div>
+        <div class="col-sm-3" style="text-align: center;">
+            <div id="user_count" class="justgage-box" data-v="{{ data.user }}"></div>
+            <div>用户</div>
+        </div>
+    </div>
 <div class="row">
     <div class="col-lg-12">
         <div class="alert alert-info alert-dismissable">
@@ -157,4 +180,95 @@
         </div>
      </div>
 </div>
+{% endblock %}
+{% block footer %}
+<script src="{{ static_url('justgage/raphael-2.1.4.min.js') }}"></script>
+<script src="{{ static_url('justgage/justgage.js') }}"></script>
+<script>
+$(function(){
+    var _init = function(){
+
+        var domain_value = $('#domain_count').data('v');
+        var domain_count = new JustGage({
+            id: "domain_count",
+            defaults: {
+                //label: "",
+                value: domain_value,
+                valueFontColor: 'green',
+                min: 0,
+                max: domain_value,
+                decimals: 0,
+                gaugeWidthScale: 0.2,
+                pointer: false,
+                counter: true,
+                donut: true,
+                relativeGaugeSize: true,
+                levelColors: ["green"],
+                textRenderer: function(val) {
+                    //return (val + '%');
+                    return val;
+                }
+            }
+        });
+
+        var record_value = $('#record_count').data('v');
+        var record_count = new JustGage({
+            id: "record_count",
+            defaults: {
+                //label: "",
+                value: record_value,
+                valueFontColor: 'blue',
+                min: 0,
+                max: record_value,
+                decimals: 0,
+                gaugeWidthScale: 0.2,
+                pointer: false,
+                counter: true,
+                donut: true,
+                relativeGaugeSize: true,
+                levelColors: ["blue"]
+            }
+        });
+
+        var group_value = $('#group_count').data('v');
+        var group_count = new JustGage({
+            id: "group_count",
+            defaults: {
+                //label: "",
+                value: group_value,
+                valueFontColor: 'orange',
+                min: 0,
+                max: group_value,
+                decimals: 0,
+                gaugeWidthScale: 0.2,
+                pointer: false,
+                counter: true,
+                donut: true,
+                relativeGaugeSize: true,
+                levelColors: ["orange"]
+            }
+        });
+
+        var user_value = $('#user_count').data('v');
+        var user_count = new JustGage({
+            id: "user_count",
+            defaults: {
+                //label: "",
+                value: user_value,
+                valueFontColor: '#d9534f',
+                min: 0,
+                max: user_value,
+                decimals: 0,
+                gaugeWidthScale: 0.2,
+                pointer: false,
+                counter: true,
+                donut: true,
+                relativeGaugeSize: true,
+                levelColors: ["#d9534f"]
+            }
+        });
+    };
+    _init();
+});
+</script>
 {% endblock %}
