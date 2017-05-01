@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 # Powered By KK Studio
+import socket
 
 class rndc:
 
@@ -8,8 +9,16 @@ class rndc:
         try:
             from isc.rndc import rndc as isc_rndc
             self.rndc = isc_rndc((host, int(port)), algo, secret)
-        except:
+        except ImportError:
             print 'Not Found ISC Module'
+            self.rndc = None
+        except socket.error, e: # 网络层问题，rndc_host或者rndc_port错了
+            print 'Socket Error'
+            #print e # [Errno 111] Connection refused
+            self.rndc = None
+        except Exception, e: # Key错误时有出现该错误
+            print type(e) # <type 'exceptions.TypeError'>
+            print e # Incorrect padding
             self.rndc = None
 
 
@@ -23,8 +32,12 @@ class rndc:
 
     def get_status(self):
         _st = self.call('status')
-        status = _st['text'].split('\n')
-        return self.parse_status(status)
+        if 'text' in _st:
+            status = _st['text'].split('\n')
+            return self.parse_status(status)
+        else:
+            return {}
+
 
     def parse_status(self,status):
         data = {'version':'','uptime':'','running':'Unknown'}
