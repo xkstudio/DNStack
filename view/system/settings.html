@@ -13,6 +13,13 @@
     <div class="col-lg-12">
         <form class="form-horizontal" role="form">
             <div class="form-group">
+                <label for="version" class="col-sm-2 control-label">系统版本</label>
+                <div class="col-sm-4">
+                    <input id="version" class="form-control" type="text" value="{{ handler.app_version }}" placeholder="License" disabled>
+                </div>
+                <div class="col-sm-3" style="margin-top: 6px"><a href="https://github.com/kkstu/DNStack" target="_blank"><i class="fa fa-upload fa-fw"></i>检查更新</a></div>
+            </div>
+            <div class="form-group">
                 <label for="license" class="col-sm-2 control-label">License</label>
                 <div class="col-sm-4">
                     <input id="license" class="form-control" type="text" value="{{ data.license['value'] or '' }}" placeholder="License" disabled>
