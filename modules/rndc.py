@@ -48,7 +48,8 @@ class rndc:
         for i in status:
             i = str(i)
             if 'version:' in i:
-                data['version'] = i.split('version: ')[1]
+                v = i.split('version: ')[1]
+                data['version'] = v.split(' ')[1]
             elif 'boot time: ' in i:
                 data['uptime'] = i.split('boot time: ')[1]
             elif 'boot time: ' in i:
