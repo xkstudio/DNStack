@@ -1,7 +1,7 @@
 DNStack
 =======
 
-DNS Web Admin Based on Bind
+DNS Web Admin Based on ISC Bind
 
 Powered By [KK Studio](http://github.com/kkstu)
 
