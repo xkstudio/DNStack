@@ -209,7 +209,6 @@ config = {
 }
 ```
 
-
 ## Startup
 
 > python run.py
@@ -219,3 +218,10 @@ You can visit the site via http://YourIP:8888/
 Specify Port:
 
 > python run.py --port=8081
+
+
+## Get Support and Help
+
+To report an issue with DNStack.
+
+https://github.com/kkstu/DNStack/issues
