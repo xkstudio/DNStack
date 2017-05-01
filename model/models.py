@@ -73,3 +73,14 @@ class Record(Base):
     create_time = Column(Integer, nullable=True)
     update_time = Column(Integer, nullable=True)
     status = Column(SmallInteger, nullable=False, default=1)
+
+
+class Options(Base):
+    __tablename__ = 'options'
+
+    id = Column(Integer,primary_key=True,autoincrement=True)
+    name = Column(VARCHAR(128), nullable=False,unique=True)
+    value = Column(VARCHAR(500), nullable=True)
+    default_value = Column(VARCHAR(500), nullable=True)
+    category = Column(SmallInteger, nullable=True)
+    update_time = Column(Integer, nullable=True)
