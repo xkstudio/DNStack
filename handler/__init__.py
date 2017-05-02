@@ -31,6 +31,7 @@ route = [
     (r'/system/state',system.StateHandler),
     (r'/system/settings',system.SettingsHandler),
     (r'/rndc/status',rndc_hanlder.StatusHandler),
+    (r'/rndc/reload',rndc_hanlder.ReloadHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/500.html',page.Page500Handler),
     (r'/page/error.html',page.PageErrorHandler),
