@@ -55,7 +55,7 @@ class App(tornado.web.Application):
 class DNStack():
 
     def __init__(self,processes=4):
-        self.__version__ = '1.0.0'
+        self.__version__ = '1.0.0-Alpha'
         self.host = config['host']
         self.port = config['port']
         self.urls = route
