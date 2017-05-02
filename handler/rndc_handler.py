@@ -37,3 +37,9 @@ class ReconfigHandler(RndcBase):
         result = self.rndc().reconfig()
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
+
+class FlushHandler(RndcBase):
+    @Auth
+    def get(self):
+        result = self.rndc().flush()
+        return self.jsonReturn({'code': 0, 'msg': 'Success'})
