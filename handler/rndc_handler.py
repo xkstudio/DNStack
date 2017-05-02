@@ -15,13 +15,11 @@ class RndcBase(BaseHandler):
         return r
 
 
-class StatusHandler(BaseHandler):
+class StatusHandler(RndcBase):
 
     @Auth
     def get(self):
-        ops = self.get_options()
-        r = rndc(ops['rndc_host']['value'], ops['rndc_port']['value'], ops['rndc_algo']['value'],ops['rndc_secret']['value'])
-        status = r.get_status_original()
+        status = self.rndc().get_status_original()
         return self.jsonReturn({'code': 0, 'msg': 'Success', 'data': status})
 
 
