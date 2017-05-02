@@ -134,9 +134,9 @@ options {
     forwarders { 114.114.114.114; 8.8.8.8; };
 };
 
-statistics-channels {
-    inet 0.0.0.0 port 8053 allow { any; };
-};
+//statistics-channels {
+//    inet 0.0.0.0 port 8053 allow { any; };
+//};
 
 include "/usr/local/bind/etc/local.zone.conf";
 //include "/usr/local/bind/etc/zone.conf";
