@@ -77,6 +77,11 @@ class rndc:
         return ret
 
 
+    def flush(self):
+        ret = self.call('flush')
+        return ret
+
+
 if __name__ == '__main__':
     host = '127.0.0.1'
     port = 953
