@@ -6,7 +6,7 @@ import page
 import user
 import domain
 import system
-import rndc
+import rndc_hanlder
 
 route = [
     (r'/',index.IndexHandler),
@@ -30,7 +30,7 @@ route = [
     (r'/domain/record/delete',domain.DeleteRecordHandler),
     (r'/system/state',system.StateHandler),
     (r'/system/settings',system.SettingsHandler),
-    (r'/rndc/status',rndc.StatusHandler),
+    (r'/rndc/status',rndc_hanlder.StatusHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/500.html',page.Page500Handler),
     (r'/page/error.html',page.PageErrorHandler),
