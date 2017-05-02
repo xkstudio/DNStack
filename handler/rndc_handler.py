@@ -34,5 +34,6 @@ class ReloadHandler(RndcBase):
 class ReconfigHandler(RndcBase):
     @Auth
     def get(self):
+        result = self.rndc().reconfig()
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
