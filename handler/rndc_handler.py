@@ -26,6 +26,8 @@ class StatusHandler(RndcBase):
 class ReloadHandler(RndcBase):
     @Auth
     def get(self):
+        result = self.rndc().reload()
+        print result
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
 
