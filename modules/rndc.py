@@ -72,6 +72,11 @@ class rndc:
         return ret
 
 
+    def reconfig(self):
+        ret = self.call('reconfig')
+        return ret
+
+
 if __name__ == '__main__':
     host = '127.0.0.1'
     port = 953
