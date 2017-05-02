@@ -5,7 +5,7 @@ DNS Web Admin Based on ISC Bind
 
 Powered By [KK Studio](http://github.com/kkstu)
 
-Version: **0.0.1-Alpha**
+Version: **1.0.0-Alpha**
 
 
 ## Overview
