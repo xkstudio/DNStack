@@ -23,13 +23,13 @@ class StatusHandler(RndcBase):
         return self.jsonReturn({'code': 0, 'msg': 'Success', 'data': status})
 
 
-class ReloadHandler(BaseHandler):
+class ReloadHandler(RndcBase):
     @Auth
     def get(self):
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
 
 
-class ReconfigHandler(BaseHandler):
+class ReconfigHandler(RndcBase):
     @Auth
     def get(self):
         return self.jsonReturn({'code': 0, 'msg': 'Success'})
