@@ -43,6 +43,16 @@ class rndc:
             return {}
 
 
+    def get_status_original(self):
+        _st = self.call('status')
+        status = []
+        if 'text' in _st:
+            _st = _st['text'].split('\n')
+            for i in _st:
+                status.append(str(i))
+        return status
+
+
     def parse_status(self,status):
         data = {'version':'','uptime':'','running':'Unknown'}
         for i in status:
