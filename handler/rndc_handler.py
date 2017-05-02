@@ -7,6 +7,14 @@ from tornado.web import authenticated as Auth
 from modules.rndc import rndc
 
 
+class RndcBase(BaseHandler):
+
+    def rndc(self):
+        ops = self.get_options()
+        r = rndc(ops['rndc_host']['value'], ops['rndc_port']['value'], ops['rndc_algo']['value'],ops['rndc_secret']['value'])
+        return r
+
+
 class StatusHandler(BaseHandler):
 
     @Auth
