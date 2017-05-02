@@ -82,5 +82,5 @@ class Options(Base):
     name = Column(VARCHAR(128), nullable=False,unique=True)
     value = Column(VARCHAR(500), nullable=True)
     default_value = Column(VARCHAR(500), nullable=True)
-    category = Column(SmallInteger, nullable=True)
+    category = Column(VARCHAR(32), nullable=False,default='default')
     update_time = Column(Integer, nullable=True)
