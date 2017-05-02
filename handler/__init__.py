@@ -33,6 +33,7 @@ route = [
     (r'/rndc/status',rndc_handler.StatusHandler),
     (r'/rndc/reload',rndc_handler.ReloadHandler),
     (r'/rndc/reconfig',rndc_handler.ReconfigHandler),
+    (r'/rndc/flush',rndc_handler.FlushHandler),
     (r'/page/404.html',page.Page404Handler),
     (r'/page/500.html',page.Page500Handler),
     (r'/page/error.html',page.PageErrorHandler),
